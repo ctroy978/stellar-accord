@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+    <script>
+        async function testApi() {
+            try {
+                const response = await fetch('/api/game-info');
+                const data = await response.json();
+                document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+                document.getElementById('status').textContent = 'Success!';
+                document.getElementById('status').style.color = 'green';
+            } catch (error) {
+                document.getElementById('result').textContent = error.toString();
+                document.getElementById('status').textContent = 'Failed!';
+                document.getElementById('status').style.color = 'red';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Stellar Accord API Test</h1>
+    <button onclick="testApi()">Test API</button>
+    <h2>Status: <span id="status">Not tested</span></h2>
+    <pre id="result">Click the button to test the API</pre>
+</body>
+</html>

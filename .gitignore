@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# JavaScript/Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+build/
+dist/
+
+# Docker
+.docker/
+
+# Database
+postgres_data/
+
+# Editor specific
+.vscode/
+.idea/
