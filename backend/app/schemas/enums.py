@@ -1,3 +1,4 @@
+#file:  app/schemas/enums.py
 from enum import Enum as PyEnum
 
 class ResourceCategory(str, PyEnum):
@@ -47,3 +48,22 @@ class GameStatus(str, PyEnum):
     ACTIVE = "active"
     PAUSED = "paused"
     COMPLETED = "completed"
+
+
+class GamePhase(str, PyEnum):
+    PLANNING = "planning"
+    NEGOTIATION = "negotiation"
+    ACTION = "action"
+    RESOLUTION = "resolution"
+    ASSESSMENT = "assessment"
+
+class TeamRoleName(str, PyEnum):
+    CHIEF_DIPLOMAT = "chief_diplomat"
+    RESOURCE_MANAGER = "resource_manager"
+    INTELLIGENCE_OFFICER = "intelligence_officer"
+    PROJECT_DIRECTOR = "project_director"
+
+class AccessLevel(str, PyEnum):
+    OWNER = "owner"
+    VIEWER = "viewer"
+    COLLABORATOR = "collaborator"

@@ -1,3 +1,4 @@
+#file: app/models/game.py
 import uuid
 from sqlalchemy import Column, String, Integer, DateTime
 from sqlalchemy.dialects.postgresql import UUID

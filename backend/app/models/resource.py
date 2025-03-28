@@ -1,3 +1,4 @@
+#file: app/models/resource.py
 import uuid
 from sqlalchemy import Column, String, Integer, ForeignKey, TEXT, ARRAY, UniqueConstraint, DateTime, CheckConstraint
 from sqlalchemy.dialects.postgresql import UUID
