@@ -1,33 +1,32 @@
+# File: app/main.py
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="Stellar Accord API")
+from app.api.api import api_router
+from app.db.init_db import init_db
 
-# Configure CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins in development
-    allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods
-    allow_headers=["*"],  # Allows all headers
+app = FastAPI(
+    title="Stellar Accord API",
+    description="API for the Stellar Accord interstellar diplomacy simulation game",
+    version="0.1.0",
 )
 
-@app.get("/")
-@app.get("/api/health")
-async def health_check():
-    return {"status": "ok", "message": "Stellar Accord API is running"}
+# Set all CORS enabled origins
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # For development; restrict in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.get("/api/game-info")
-async def game_info():
-    return {
-        "name": "Stellar Accord",
-        "description": "Interstellar Diplomacy Simulation Game",
-        "civilizations": [
-            "The Thrizoth (Arborealis Nexus)",
-            "The Methane Collective", 
-            "The Silicon Liberation",
-            "The Glacian Current",
-            "The Kyrathi (Crystalline Convergence)",
-            "The Vasku (Voidborn Nomads)"
-        ]
-    }
+app.include_router(api_router, prefix="/api")
+
+@app.get("/")
+def root():
+    return {"message": "Welcome to Stellar Accord API"}
+
+@app.on_event("startup")
+def startup_event():
+    # Initialize the database tables
+    init_db()
