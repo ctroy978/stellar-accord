@@ -1,8 +1,9 @@
 # File: app/models/game_phase.py
 import uuid
-from sqlalchemy import Column, String, ForeignKey, Integer, DateTime, Interval
+from sqlalchemy import Column, String, ForeignKey, Integer, DateTime, Interval, Boolean, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 from app.db.base import Base
 
 class GamePhase(Base):
@@ -16,6 +17,9 @@ class GamePhase(Base):
     ended_at = Column(DateTime, nullable=True)
     duration = Column(Interval, nullable=True)  # Scheduled duration of this phase
     is_active = Column(Boolean, default=False, nullable=False)
+    
+    # Add relationship
+    game = relationship("Game", back_populates="phases")
     
     # Composite unique constraint for active phase tracking
     __table_args__ = (

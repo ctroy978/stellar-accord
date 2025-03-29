@@ -79,7 +79,7 @@ def update_civilization(db: Session, civilization_id: UUID, civilization: Civili
         )
     
     # Update attributes if provided
-    update_data = civilization.dict(exclude_unset=True)
+    update_data = civilization.model_dump(exclude_unset=True)
     for key, value in update_data.items():
         setattr(db_civilization, key, value)
     

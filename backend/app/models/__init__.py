@@ -1,4 +1,3 @@
-#file: app/models/_init_.py
 from app.models.game import Game
 from app.models.resource import (
     ResourceType, 
@@ -9,5 +8,18 @@ from app.models.resource import (
     BlackMarketShipment,
     BlackMarketBid
 )
-
-# Add future model imports here
+from app.models.civilization import Civilization
+from app.models.player import Player
+from app.models.teacher import Teacher
+from app.models.team_role import TeamRole
+from app.models.game_phase import GamePhase
+from app.models.game_access import GameAccess
+from app.models.technology import (
+    BigTechComponent,
+    UberTechComponent,
+    UniversalProject,
+    TechRequirement,
+    ProjectDevelopment,
+    TechnologyOwnership,
+    ProjectComponentAssignment
+)

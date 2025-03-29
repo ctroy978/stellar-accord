@@ -2,13 +2,14 @@
 
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
-from fastapi import HTTPException, status
+from fastapi import HTTPException, status as http_status  # Rename to avoid collision
 from typing import List, Optional
 from uuid import UUID
 from datetime import datetime
 
 from app.models.game import Game
 from app.models.game_phase import GamePhase as GamePhaseModel
+from app.models.game_access import GameAccess  # Add this import
 from app.schemas.game import GameCreate, GameUpdate
 from app.schemas.enums import GameStatus, GamePhase
 
@@ -23,9 +24,9 @@ def get_games(db: Session, skip: int = 0, limit: int = 100) -> List[Game]:
 def get_teacher_games(db: Session, teacher_id: UUID) -> List[Game]:
     """Get all games associated with a specific teacher."""
     return db.query(Game).join(
-        models.GameAccess, Game.id == models.GameAccess.game_id
+        GameAccess, Game.id == GameAccess.game_id  # Fix undefined models
     ).filter(
-        models.GameAccess.teacher_id == teacher_id
+        GameAccess.teacher_id == teacher_id
     ).all()
 
 def create_game(db: Session, game: GameCreate) -> Game:
@@ -57,7 +58,7 @@ def create_game(db: Session, game: GameCreate) -> Game:
     except IntegrityError:
         db.rollback()
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=http_status.HTTP_400_BAD_REQUEST,  # Use http_status
             detail="Could not create game due to database constraint violation"
         )
     
@@ -68,12 +69,12 @@ def update_game(db: Session, game_id: UUID, game: GameUpdate) -> Game:
     db_game = get_game(db, game_id=game_id)
     if not db_game:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
+            status_code=http_status.HTTP_404_NOT_FOUND,  # Use http_status
             detail="Game not found"
         )
     
     # Update attributes if provided
-    update_data = game.dict(exclude_unset=True)
+    update_data = game.model_dump(exclude_unset=True)  # Use model_dump instead of dict
     for key, value in update_data.items():
         setattr(db_game, key, value)
     
@@ -83,7 +84,7 @@ def update_game(db: Session, game_id: UUID, game: GameUpdate) -> Game:
     except IntegrityError:
         db.rollback()
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=http_status.HTTP_400_BAD_REQUEST,  # Use http_status
             detail="Could not update game due to database constraint violation"
         )
     
@@ -94,7 +95,7 @@ def delete_game(db: Session, game_id: UUID) -> None:
     db_game = get_game(db, game_id=game_id)
     if not db_game:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
+            status_code=http_status.HTTP_404_NOT_FOUND,  # Use http_status
             detail="Game not found"
         )
     
@@ -104,7 +105,7 @@ def delete_game(db: Session, game_id: UUID) -> None:
     except IntegrityError:
         db.rollback()
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=http_status.HTTP_400_BAD_REQUEST,  # Use http_status
             detail="Could not delete game due to database constraint violation"
         )
 
@@ -113,13 +114,13 @@ def advance_game_round(db: Session, game_id: UUID) -> Game:
     db_game = get_game(db, game_id=game_id)
     if not db_game:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
+            status_code=http_status.HTTP_404_NOT_FOUND,  # Use http_status
             detail="Game not found"
         )
     
     if db_game.status != GameStatus.ACTIVE:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=http_status.HTTP_400_BAD_REQUEST,  # Use http_status
             detail=f"Cannot advance round for game in {db_game.status} status"
         )
     
@@ -153,7 +154,7 @@ def advance_game_round(db: Session, game_id: UUID) -> Game:
     except IntegrityError:
         db.rollback()
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=http_status.HTTP_400_BAD_REQUEST,  # Use http_status
             detail="Could not advance game round due to database constraint violation"
         )
     
@@ -164,7 +165,7 @@ def update_game_status(db: Session, game_id: UUID, status: GameStatus) -> Game:
     db_game = get_game(db, game_id=game_id)
     if not db_game:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
+            status_code=http_status.HTTP_404_NOT_FOUND,  # Use http_status
             detail="Game not found"
         )
     
@@ -178,7 +179,7 @@ def update_game_status(db: Session, game_id: UUID, status: GameStatus) -> Game:
     
     if status not in valid_transitions[db_game.status]:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=http_status.HTTP_400_BAD_REQUEST,  # Use http_status
             detail=f"Invalid status transition from {db_game.status} to {status}"
         )
     
@@ -190,7 +191,7 @@ def update_game_status(db: Session, game_id: UUID, status: GameStatus) -> Game:
     except IntegrityError:
         db.rollback()
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=http_status.HTTP_400_BAD_REQUEST,  # Use http_status
             detail="Could not update game status due to database constraint violation"
         )
     

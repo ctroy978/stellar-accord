@@ -67,3 +67,14 @@ class AccessLevel(str, PyEnum):
     OWNER = "owner"
     VIEWER = "viewer"
     COLLABORATOR = "collaborator"
+
+class TechType(str, PyEnum):
+    BIG_TECH = "big_tech"
+    UBER_TECH = "uber_tech"
+    UNIVERSAL = "universal"
+    RESOURCE = "resource"
+
+class ProjectPhase(str, PyEnum):
+    RESEARCH = "research"
+    PROTOTYPE = "prototype"
+    CONSTRUCTION = "construction"

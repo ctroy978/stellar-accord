@@ -94,9 +94,7 @@ def add_resources(
     resource: ResourceCreate,
     db: Session = Depends(get_db)
 ):
-    """
-    Add resources to a civilization's inventory.
-    """
+    """Add resources to a civilization's inventory."""
     return crud_resource.add_resources(
         db, game_id=game_id, civilization_id=civilization_id, resource=resource
     )

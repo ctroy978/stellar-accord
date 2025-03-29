@@ -29,10 +29,11 @@ class ResourceTypeInDB(ResourceTypeBase):
     created_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ResourceType(ResourceTypeInDB):
-    pass
+    class Config:
+        from_attributes = True
 
 # Resource Schemas
 class ResourceBase(BaseModel):
@@ -53,7 +54,7 @@ class ResourceInDB(ResourceBase):
     modified_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class Resource(ResourceInDB):
     resource_type: ResourceType
@@ -65,6 +66,8 @@ class ResourceTransferBase(BaseModel):
     sender_id: UUID
     receiver_id: UUID
     hub_id: HubName
+    game_id: UUID  # Add game_id to the base class
+
 
 class ResourceTransferCreate(ResourceTransferBase):
     pass
@@ -78,7 +81,7 @@ class ResourceTransferInDB(ResourceTransferBase):
     created_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ResourceTransfer(ResourceTransferInDB):
     resource_type: ResourceType

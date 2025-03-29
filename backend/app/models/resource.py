@@ -2,6 +2,8 @@
 import uuid
 from sqlalchemy import Column, String, Integer, ForeignKey, TEXT, ARRAY, UniqueConstraint, DateTime, CheckConstraint
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
+
 from sqlalchemy.sql import func
 from app.db.base import Base
 
@@ -10,11 +12,14 @@ class ResourceType(Base):
     
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     name = Column(String(255), nullable=False, unique=True)
-    category = Column(String(50), nullable=False)  # Raw Material, Technology, etc.
-    rarity = Column(String(50), nullable=False)  # Common, Uncommon, Rare, Very Rare
+    category = Column(String(50), nullable=False)
+    rarity = Column(String(50), nullable=False)
     description = Column(TEXT)
-    producible_by = Column(ARRAY(String))  # Array of civilization IDs
+    producible_by = Column(ARRAY(String))
     created_at = Column(DateTime, default=func.now())
+    
+    # Add relationship
+    resources = relationship("Resource", back_populates="resource_type")
 
 class Resource(Base):
     __tablename__ = 'resources'
@@ -22,10 +27,14 @@ class Resource(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     game_id = Column(UUID(as_uuid=True), ForeignKey('games.id', ondelete='CASCADE'), nullable=False)
     resource_type_id = Column(UUID(as_uuid=True), ForeignKey('resource_types.id'), nullable=False)
-    owner_id = Column(UUID(as_uuid=True), nullable=False)  # Will reference civilizations/teams
+    owner_id = Column(UUID(as_uuid=True), nullable=False)
     quantity = Column(Integer, default=0, nullable=False)
     created_at = Column(DateTime, default=func.now())
     modified_at = Column(DateTime, default=func.now(), onupdate=func.now())
+    
+    # Add relationships
+    game = relationship("Game", back_populates="resources")
+    resource_type = relationship("ResourceType", back_populates="resources")
     
     # Composite unique constraint for aggregation
     __table_args__ = (
@@ -63,6 +72,7 @@ class ResourceTransfer(Base):
     round_initiated = Column(Integer, nullable=False)
     status = Column(String(50), default='pending', nullable=False)  # pending, completed, failed
     created_at = Column(DateTime, default=func.now())
+    resource_type = relationship("ResourceType")
     
     __table_args__ = (
         CheckConstraint('quantity > 0', name='check_positive_transfer_quantity'),
