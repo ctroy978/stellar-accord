@@ -1,11 +1,30 @@
 # app/config/utils.py
+"""
+Configuration Utility Functions
+
+This module provides utility functions for accessing and working with 
+game configurations. These functions serve as convenient access points
+to retrieve properly initialized configuration objects and to perform
+common operations that rely on multiple configuration systems.
+"""
+
 from typing import Optional, List, Dict, Tuple
 from app.config import get_config_manager
 from app.config.star_map import StarMapConfig
 from app.config.trade import TradeConfig
+from app.config.tech_rules import TechnologyConfig
+
 
 def get_star_map_config() -> StarMapConfig:
-    """Get the current star map configuration."""
+    """
+    Get the current star map configuration.
+    
+    This function ensures that a properly initialized map configuration
+    is available, creating one with defaults if necessary.
+    
+    Returns:
+        The current StarMapConfig instance
+    """
     config_manager = get_config_manager()
     
     # Ensure the configuration type is registered
@@ -22,7 +41,15 @@ def get_star_map_config() -> StarMapConfig:
     return config
 
 def get_trade_config() -> TradeConfig:
-    """Get the current trade configuration."""
+    """
+    Get the current trade configuration.
+    
+    This function ensures that a properly initialized trade configuration
+    is available, creating one with defaults if necessary.
+    
+    Returns:
+        The current TradeConfig instance
+    """
     config_manager = get_config_manager()
     
     # Ensure the configuration type is registered
@@ -42,7 +69,15 @@ def calculate_delivery_cost(civ_system_id: str, hub_id: str) -> float:
     """
     Calculate delivery cost between a civilization's system and a hub.
     
-    This combines spatial data from the star map with trade rules.
+    This function combines spatial data from the star map with trade rules
+    to calculate the delivery cost percentage for a given route.
+    
+    Args:
+        civ_system_id: The system ID of the civilization
+        hub_id: The ID of the hub
+        
+    Returns:
+        Delivery cost as a percentage
     """
     star_map = get_star_map_config()
     trade_config = get_trade_config()
@@ -60,6 +95,10 @@ def calculate_delivery_cost(civ_system_id: str, hub_id: str) -> float:
 def get_hub_distance_table() -> Dict[str, Dict[str, Tuple[int, float]]]:
     """
     Get a table of jumps and delivery costs for all civilizations and hubs.
+    
+    This function integrates the star map and trade configuration systems
+    to build a comprehensive table of distances and costs, which is useful
+    for display purposes and for making trade decisions.
     
     Returns a dictionary mapping:
     civilization_id -> {
@@ -127,3 +166,29 @@ def get_hub_distance_table() -> Dict[str, Dict[str, Tuple[int, float]]]:
     except Exception:
         # If anything fails, fall back to defaults
         return default_result
+
+
+def get_technology_config() -> TechnologyConfig:
+    """
+    Get the current technology configuration.
+    
+    This function ensures that a properly initialized technology configuration
+    is available, creating one with defaults if necessary.
+    
+    Returns:
+        The current TechnologyConfig instance
+    """
+    config_manager = get_config_manager()
+    
+    # Ensure the configuration type is registered
+    if "technology" not in config_manager._config_classes:
+        from app.config.technology import TechnologyConfig
+        config_manager.register_config_class("technology", TechnologyConfig)
+    
+    config = config_manager.get_config("technology")
+    
+    # Initialize if not already present
+    if config is None:
+        config = config_manager.reset_to_defaults("technology")
+        
+    return config
