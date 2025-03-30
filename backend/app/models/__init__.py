@@ -14,6 +14,7 @@ from app.models.teacher import Teacher
 from app.models.team_role import TeamRole
 from app.models.game_phase import GamePhase
 from app.models.game_access import GameAccess
+from app.models.law import LawProposal, EnactedLaw
 from app.models.technology import (
     BigTechComponent,
     UberTechComponent,

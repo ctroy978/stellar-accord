@@ -13,6 +13,9 @@ from app.config import get_config_manager
 from app.config.star_map import StarMapConfig
 from app.config.trade import TradeConfig
 from app.config.tech_rules import TechnologyConfig
+from app.config.game_rules import GameRulesConfig
+from app.config.law_system import LawSystemConfig
+
 
 
 def get_star_map_config() -> StarMapConfig:
@@ -190,5 +193,56 @@ def get_technology_config() -> TechnologyConfig:
     # Initialize if not already present
     if config is None:
         config = config_manager.reset_to_defaults("technology")
+        
+    return config
+
+def get_game_rules_config() -> GameRulesConfig:
+    """
+    Get the current game rules configuration.
+    
+    This function ensures that a properly initialized game rules configuration
+    is available, creating one with defaults if necessary.
+    
+    Returns:
+        The current GameRulesConfig instance
+    """
+    config_manager = get_config_manager()
+    
+    # Ensure the configuration type is registered
+    if "game_rules" not in config_manager._config_classes:
+        from app.config.game_rules import GameRulesConfig
+        config_manager.register_config_class("game_rules", GameRulesConfig)
+    
+    config = config_manager.get_config("game_rules")
+    
+    # Initialize if not already present
+    if config is None:
+        config = config_manager.reset_to_defaults("game_rules")
+        
+    return config
+
+
+def get_law_system_config() -> 'LawSystemConfig':
+    """
+    Get the current law system configuration.
+    
+    This function ensures that a properly initialized law system configuration
+    is available, creating one with defaults if necessary.
+    
+    Returns:
+        The current LawSystemConfig instance
+    """
+    config_manager = get_config_manager()
+    
+    # Ensure the configuration type is registered
+    if "law_system" not in config_manager._config_classes:
+        from app.config.law_system import LawSystemConfig
+        config_manager.register_config_class("law_system", LawSystemConfig)
+    
+    config = config_manager.get_config("law_system")
+    
+    # Initialize if not already present
+    if config is None:
+        config = config_manager.reset_to_defaults("law_system")
         
     return config

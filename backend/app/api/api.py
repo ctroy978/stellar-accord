@@ -1,6 +1,6 @@
 # Update app/api/api.py to include the new routers
 from fastapi import APIRouter
-from app.api.endpoints import resources, games, civilizations, trades, technology, tech_rules
+from app.api.endpoints import resources, games, civilizations, trades, technology, tech_rules, laws
 
 
 api_router = APIRouter()
@@ -11,3 +11,5 @@ api_router.include_router(civilizations.router, prefix="/civilizations", tags=["
 api_router.include_router(trades.router, prefix="/trades", tags=["trades"])
 api_router.include_router(technology.router, prefix="/technology", tags=["technology"])
 api_router.include_router(tech_rules.router, prefix="/tech-rules", tags=["tech-rules"])
+api_router.include_router(laws.router, prefix="/laws", tags=["laws"])
+
