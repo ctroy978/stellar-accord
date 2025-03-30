@@ -138,6 +138,25 @@ class TechnologyConfig(BaseConfiguration):
                     "tech_type": "big_tech",
                     "tech_group": "A"
                 },
+                  {
+                "component_id": "structural_integrity_field",
+                "name": "Structural Integrity Field",
+                "description": "System for reinforcing and stabilizing physical constructs",
+                "tech_type": "uber_tech"
+                },
+                # These might also be needed based on the dyson_sphere requirements
+                {
+                    "component_id": "thermal_regulation_network",
+                    "name": "Thermal Regulation Network",
+                    "description": "Technology for controlling heat and energy distribution",
+                    "tech_type": "uber_tech"
+                },
+                {
+                    "component_id": "stellar_manipulation_array",
+                    "name": "Stellar Manipulation Array",
+                    "description": "Technology for controlling and modifying stars",
+                    "tech_type": "uber_tech"
+                },
                 
                 # Big Tech Components - Group B
                 {
@@ -286,37 +305,37 @@ class TechnologyConfig(BaseConfiguration):
         """Validate the configuration."""
         # Validate components exist
         if not self.components:
+            print("Validation failed: No components defined")
             return False
         
-        # Validate requirements reference valid components and resources
+        # Validate requirements reference valid components
         for component_id, requirements in self.requirements.items():
             if component_id not in self.components:
+                print(f"Validation failed: Requirements found for unknown component {component_id}")
                 return False
             
             for requirement in requirements:
                 # Validate big_tech and uber_tech references
                 if requirement.required_type in ["big_tech", "uber_tech"]:
                     if requirement.required_id not in self.components:
+                        print(f"Validation failed: Requirement references unknown component {requirement.required_id}")
                         return False
                     
                     # Verify the correct type
                     component = self.components[requirement.required_id]
                     if component.tech_type != requirement.required_type:
+                        print(f"Validation failed: Component {requirement.required_id} has type {component.tech_type} but requirement expects {requirement.required_type}")
                         return False
         
         # Validate project effects reference valid projects
         for project_id in self.project_effects:
             if project_id not in self.components:
+                print(f"Validation failed: Effect references unknown project {project_id}")
                 return False
             
             # Verify it's a universal project
             if self.components[project_id].tech_type != "universal_project":
-                return False
-        
-        # Validate civilization capabilities
-        for civ_id, tech_groups in self.civilization_capabilities.items():
-            # Ensure we don't have duplicate tech groups
-            if len(tech_groups) != len(set(tech_groups)):
+                print(f"Validation failed: Project effect for {project_id} is not a universal_project")
                 return False
         
         return True

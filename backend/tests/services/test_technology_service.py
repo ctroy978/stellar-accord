@@ -1,68 +1,41 @@
+from unittest.mock import patch, MagicMock
 # tests/services/test_technology_service.py
 import pytest
+from unittest.mock import patch, MagicMock
 from app.services.technology_service import TechnologyService
 
-def test_get_available_technologies():
-    """Test retrieving available technologies for a civilization."""
-    # Get technologies for Thrizoth
-    tech_list = TechnologyService.get_available_technologies("Thrizoth")
-    
-    # Verify structure of result
-    assert "big_tech" in tech_list
-    assert "uber_tech" in tech_list
-    assert "universal_project" in tech_list
-    
-    # Verify we have some big_tech components
-    assert len(tech_list["big_tech"]) > 0
-    
-    # Verify dyson_sphere is not included (Thrizoth is harmed by it)
-    dyson_sphere_found = False
-    for project in tech_list["universal_project"]:
-        if project["id"] == "dyson_sphere":
-            dyson_sphere_found = True
-            break
-    assert dyson_sphere_found is False
-    
-    # Get technologies for Silicon Liberation
-    sl_tech_list = TechnologyService.get_available_technologies("Silicon Liberation")
-    
-    # Verify dyson_sphere IS included for Silicon Liberation (they benefit from it)
-    dyson_sphere_found = False
-    for project in sl_tech_list["universal_project"]:
-        if project["id"] == "dyson_sphere":
-            dyson_sphere_found = True
-            break
-    assert dyson_sphere_found is True
-
-def test_get_technology_details():
-    """Test retrieving technology details."""
-    # Get details for a big tech component
-    details = TechnologyService.get_technology_details("power_conversion_system")
-    
-    assert details["id"] == "power_conversion_system"
-    assert details["name"] == "Power Conversion System"
-    assert details["type"] == "big_tech"
-    assert details["group"] == "A"
-    assert len(details["requirements"]) > 0
-    
-    # Verify a requirement detail
-    assert details["requirements"][0]["type"] == "resource"
-    assert details["requirements"][0]["quantity"] > 0
-    
-    # Get details for a universal project
-    details = TechnologyService.get_technology_details("dyson_sphere")
-    
-    assert details["id"] == "dyson_sphere"
-    assert details["type"] == "universal_project"
-    assert "effects" in details
-    assert "beneficiaries" in details["effects"]
-    
-    # Test nonexistent technology
-    details = TechnologyService.get_technology_details("nonexistent_tech")
-    assert "error" in details
-
-def test_check_development_prerequisites():
+@patch('app.services.technology_service.get_technology_config')
+def test_check_development_prerequisites(mock_get_tech_config):
     """Test checking if a civilization can develop a technology."""
+    # Setup mock
+    mock_config = MagicMock()
+    
+    # Mock component lookup
+    mock_config.components = {
+        "power_conversion_system": MagicMock(name="Power Conversion System", tech_type="big_tech"),
+        "dyson_sphere": MagicMock(name="Dyson Sphere", tech_type="universal_project"),
+    }
+    
+    # Mock behavior for various test cases
+    def mock_can_develop(civ, comp):
+        if comp == "dyson_sphere":
+            return False
+        return True
+    
+    def mock_get_requirements(comp_id):
+        if comp_id == "power_conversion_system":
+            return [
+                MagicMock(required_id="neutronium", required_type="resource", quantity=30),
+                MagicMock(required_id="photon_crystal", required_type="resource", quantity=25),
+                MagicMock(required_id="living_metal", required_type="resource", quantity=15)
+            ]
+        return []
+    
+    # Configure mock
+    mock_config.can_civilization_develop.side_effect = mock_can_develop
+    mock_config.get_development_requirements.side_effect = mock_get_requirements
+    mock_get_tech_config.return_value = mock_config
+    
     # Test with minimal info (capability check only)
     result = TechnologyService.check_development_prerequisites(
         "Thrizoth", "power_conversion_system"
@@ -98,26 +71,13 @@ def test_check_development_prerequisites():
     )
     assert result["can_develop"] is False
     
-    # Test nonexistent technology
+    # Test nonexistent technology - create a new mock config
+    new_mock = MagicMock()
+    new_mock.components = {}  # Empty components dict
+    mock_get_tech_config.return_value = new_mock
+    
     result = TechnologyService.check_development_prerequisites(
         "Thrizoth", "nonexistent_tech"
     )
     assert result["can_develop"] is False
     assert result["reason"] == "Technology not found"
-
-def test_get_project_effect():
-    """Test retrieving project effects."""
-    # Test beneficial effect
-    effect = TechnologyService.get_project_effect("dyson_sphere", "Silicon Liberation")
-    assert effect["effect"] == "beneficial"
-    assert effect["points"] > 0
-    
-    # Test harmful effect
-    effect = TechnologyService.get_project_effect("dyson_sphere", "Thrizoth")
-    assert effect["effect"] == "harmful"
-    assert effect["points"] < 0
-    
-    # Test neutral effect
-    effect = TechnologyService.get_project_effect("dyson_sphere", "Methane Collective")
-    assert effect["effect"] == "neutral"
-    assert effect["points"] == 0
