@@ -15,6 +15,9 @@ from app.config.trade import TradeConfig
 from app.config.tech_rules import TechnologyConfig
 from app.config.game_rules import GameRulesConfig
 from app.config.law_system import LawSystemConfig
+from app.config.intel_operations import IntelOperationsConfig
+
+
 
 
 
@@ -244,5 +247,83 @@ def get_law_system_config() -> 'LawSystemConfig':
     # Initialize if not already present
     if config is None:
         config = config_manager.reset_to_defaults("law_system")
+        
+    return config
+
+
+
+def get_intel_operations_config() -> 'IntelOperationsConfig':
+    """
+    Get the current intelligence operations configuration.
+    
+    This function ensures that a properly initialized intel operations configuration
+    is available, creating one with defaults if necessary.
+    
+    Returns:
+        The current IntelOperationsConfig instance
+    """
+    config_manager = get_config_manager()
+    
+    # Ensure the configuration type is registered
+    if "intel_operations" not in config_manager._config_classes:
+        from app.config.intel_operations import IntelOperationsConfig
+        config_manager.register_config_class("intel_operations", IntelOperationsConfig)
+    
+    config = config_manager.get_config("intel_operations")
+    
+    # Initialize if not already present
+    if config is None:
+        config = config_manager.reset_to_defaults("intel_operations")
+        
+    return config
+
+
+def get_intel_operations_config() -> IntelOperationsConfig:
+    """
+    Get the current intelligence operations configuration.
+    
+    This function ensures that a properly initialized intel operations configuration
+    is available, creating one with defaults if necessary.
+    
+    Returns:
+        The current IntelOperationsConfig instance
+    """
+    config_manager = get_config_manager()
+    
+    # Ensure the configuration type is registered
+    if "intel_operations" not in config_manager._config_classes:
+        from app.config.intel_operations import IntelOperationsConfig
+        config_manager.register_config_class("intel_operations", IntelOperationsConfig)
+    
+    config = config_manager.get_config("intel_operations")
+    
+    # Initialize if not already present
+    if config is None:
+        config = config_manager.reset_to_defaults("intel_operations")
+        
+    return config
+
+def get_intel_operations_config() -> 'IntelOperationsConfig':
+    """
+    Get the current intelligence operations configuration.
+    
+    This function ensures that a properly initialized intel operations configuration
+    is available, creating one with defaults if necessary.
+    
+    Returns:
+        The current IntelOperationsConfig instance
+    """
+    config_manager = get_config_manager()
+    
+    # Ensure the configuration type is registered
+    if "intel_operations" not in config_manager._config_classes:
+        from app.config.intel_operations import IntelOperationsConfig
+        config_manager.register_config_class("intel_operations", IntelOperationsConfig)
+    
+    config = config_manager.get_config("intel_operations")
+    
+    # Initialize if not already present
+    if config is None:
+        config = config_manager.reset_to_defaults("intel_operations")
         
     return config
