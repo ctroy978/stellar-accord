@@ -20,7 +20,6 @@ from app.config.intel_operations import IntelOperationsConfig
 
 
 
-
 def get_star_map_config() -> StarMapConfig:
     """
     Get the current star map configuration.
@@ -42,7 +41,9 @@ def get_star_map_config() -> StarMapConfig:
     
     # Initialize if not already present
     if config is None:
-        config = config_manager.reset_to_defaults("star_map")
+        config = StarMapConfig()
+        # Don't use reset_to_defaults which would call validate before initialization
+        config_manager._configs["star_map"] = config
         
     return config
 
