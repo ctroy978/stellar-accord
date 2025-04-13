@@ -1,0 +1,134 @@
+# File Path: config/sector_map.yaml
+# Purpose: Defines the game map layout, star systems, connections, hubs, and base toll rules.
+
+# Unique identifiers for systems, used in connections and other configs
+# Homeworlds: AB (KI/SL), CD (TH), EF (VN), GH (GC), IJ (MC)
+# Hubs: AlphaHub, BetaHub, GammaHub
+# Dead Stars: D2, D4
+# Central System: Kokoro
+
+systems:
+  - id: AB
+    name: Shared System AB
+    type: SharedHomeworld
+    owner_civs: [KI, SL] # Kyrathi & Silicon Liberation share
+    initial_toll_cs: 0 # Civs set tolls later, must agree
+  - id: CD
+    name: System CD (Verdant)
+    type: Homeworld
+    owner_civs: [TH] # Thrizoth homeworld
+    initial_toll_cs: 0 # Civ sets toll later
+  - id: EF
+    name: System EF (Drift)
+    type: Homeworld
+    owner_civs: [VN] # Vasku homeworld
+    initial_toll_cs: 0 # Civ sets toll later
+  - id: GH
+    name: System GH (Glacia)
+    type: Homeworld
+    owner_civs: [GC] # Glacian Current homeworld
+    initial_toll_cs: 0 # Civ sets toll later
+  - id: IJ
+    name: System IJ (Amalgus)
+    type: Homeworld
+    owner_civs: [MC] # Methane Collective homeworld
+    initial_toll_cs: 0 # Civ sets toll later
+
+  - id: AlphaHub
+    name: Alpha Hub
+    type: TradeHub
+    owner_civs: [] # Neutral
+    initial_toll_cs: 0
+  - id: BetaHub
+    name: Beta Hub
+    type: TradeHub
+    owner_civs: [] # Neutral
+    initial_toll_cs: 0
+  - id: GammaHub
+    name: Gamma Hub
+    type: TradeHub
+    owner_civs: [] # Neutral
+    initial_toll_cs: 0
+
+  - id: D2
+    name: Dead Star D2
+    type: DeadStar
+    owner_civs: [] # Conclave owned/managed implicitly
+    initial_toll_cs: 0 # Explicitly no toll as per GDD 6.2
+  - id: D4
+    name: Dead Star D4
+    type: DeadStar
+    owner_civs: [] # Conclave owned/managed implicitly
+    initial_toll_cs: 0 # Explicitly no toll as per GDD 6.2
+
+  - id: Kokoro
+    name: Kokoro System
+    type: Contested
+    owner_civs: [] # Regulated by Conclave
+    initial_toll_cs: 0 # No gates, no standard toll access
+
+# Star Gate connections between systems based on Appendix A map SVG
+# Note: Kokoro has no gates
+connections:
+  - system_a: AB
+    system_b: AlphaHub
+    type: StarGate
+  - system_a: AB
+    system_b: BetaHub
+    type: StarGate
+  - system_a: AB
+    system_b: CD
+    type: StarGate
+  - system_a: CD
+    system_b: AlphaHub
+    type: StarGate
+  - system_a: CD
+    system_b: D4
+    type: StarGate
+  - system_a: EF
+    system_b: BetaHub
+    type: StarGate
+  - system_a: EF
+    system_b: GH
+    type: StarGate
+  - system_a: GH
+    system_b: GammaHub
+    type: StarGate
+  - system_a: GH
+    system_b: D2
+    type: StarGate
+  - system_a: IJ
+    system_b: GammaHub
+    type: StarGate
+  - system_a: IJ
+    system_b: D2 # GDD Map shows connection IJ <-> D2
+    type: StarGate
+  - system_a: IJ
+    system_b: D4 # GDD Map shows connection IJ <-> D4
+    type: StarGate
+  - system_a: D4
+    system_b: D2
+    type: StarGate
+
+# List of Trade Hub system IDs for easy reference
+trade_hubs:
+  - AlphaHub
+  - BetaHub
+  - GammaHub
+
+# Rules governing trade package delivery via Hubs
+trade_logistics:
+  hub_delivery_cost_percent: 5 # 5% cost deducted from goods
+  # Note: Cost is paid by the RECEIVER.
+  # Deduction is applied per resource/component type in the shipment.
+  # Fractional amounts per item type are rounded UP before deduction.
+  # Hub trades are anonymous unless revealed by Intel Ops.
+
+# Base rules for Star Gate tolls
+star_gate_tolls:
+  max_home_system_toll: 50 # Default maximum CS toll civs can set on their home system gate
+  # Note: Conclave directives might override this maximum later in the game.
+  dead_star_toll: 0 # Dead Stars D2, D4 have no tolls.
+  # Note: Shared System AB requires KI & SL to agree on identical tolls.
+  # Revenue from AB toll is split 50/50 between KI & SL (handled by game logic).
+  # Comms-restricted civs cannot transit each other's home systems (except KI/SL in AB).

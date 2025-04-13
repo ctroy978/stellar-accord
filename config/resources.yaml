@@ -1,0 +1,137 @@
+# File Path: config/resources.yaml
+# Purpose: Defines all raw materials, their rarity, base Chrono Shard (CS) value, and category properties.
+
+# Resource IDs should be used consistently across all configuration files.
+
+resources:
+  # Common Resources (Base CS Value: 1)
+  - id: CarbonMatrices
+    name: Carbon Matrices
+    rarity: Common
+    base_cs_value: 1
+  - id: PhotonCrystal
+    name: Photon Crystal
+    rarity: Common
+    base_cs_value: 1
+  - id: EchoCrystal
+    name: Echo Crystal
+    rarity: Common
+    base_cs_value: 1
+  - id: LiquidSilicon
+    name: Liquid Silicon
+    rarity: Common
+    base_cs_value: 1
+
+  # Uncommon Resources (Base CS Value: 2)
+  - id: SolarEssence
+    name: Solar Essence
+    rarity: Uncommon
+    base_cs_value: 2
+  - id: AtmosphericNexus
+    name: Atmospheric Nexus
+    rarity: Uncommon
+    base_cs_value: 2
+  - id: BiosyntheticPolymers
+    name: Biosynthetic Polymers
+    rarity: Uncommon
+    base_cs_value: 2
+  - id: QuantumParticles
+    name: Quantum Particles
+    rarity: Uncommon
+    base_cs_value: 2
+  - id: PsionicResin
+    name: Psionic Resin
+    rarity: Uncommon
+    base_cs_value: 2
+
+  # Rare Resources (Base CS Value: 3)
+  - id: Neutronium # Note: GDD C.1 lists this under Rare despite C description maybe implying Uncommon. Following C.1 table.
+    name: Neutronium
+    rarity: Rare
+    base_cs_value: 3
+  - id: DuraniumAlloy
+    name: Duranium Alloy
+    rarity: Rare
+    base_cs_value: 3
+  - id: LivingMetal
+    name: Living Metal
+    rarity: Rare
+    base_cs_value: 3
+  - id: DeepOceanLuminite
+    name: Deep-Ocean Luminite
+    rarity: Rare
+    base_cs_value: 3
+  - id: HyperdenseIce
+    name: Hyperdense Ice
+    rarity: Rare
+    base_cs_value: 3
+  - id: MethasyntheticSpores
+    name: Methasynthetic Spores
+    rarity: Rare
+    base_cs_value: 3
+  - id: RootMemoryStrands
+    name: Root Memory Strands
+    rarity: Rare
+    base_cs_value: 3
+  - id: VoidPlasma
+    name: Void Plasma
+    rarity: Rare
+    base_cs_value: 3
+  - id: CognitionCrystals
+    name: Cognition Crystals
+    rarity: Rare
+    base_cs_value: 3
+  - id: CrystalResonance # Added based on it appearing in Big Tech costs (Appendix D)
+    name: Crystal Resonance
+    rarity: Rare # Assuming Rare based on name/context, needs GDD clarification if possible
+    base_cs_value: 3
+
+  # Very Rare Resources (Base CS Value: 5)
+  - id: Gravitonium
+    name: Gravitonium
+    rarity: VeryRare
+    base_cs_value: 5
+  - id: TemporalDust
+    name: Temporal Dust
+    rarity: VeryRare
+    base_cs_value: 5
+  - id: StellarCoreFragment
+    name: Stellar Core Fragment
+    rarity: VeryRare
+    base_cs_value: 5
+  - id: VoidEssence
+    name: Void Essence
+    rarity: VeryRare
+    base_cs_value: 5
+  - id: QuantumEntanglementNodes
+    name: Quantum Entanglement Nodes
+    rarity: VeryRare # Often shortened to QEN in costs
+    base_cs_value: 5
+  - id: ChronoAmber
+    name: Chrono Amber
+    rarity: VeryRare
+    base_cs_value: 5
+
+# Properties associated with different rarity levels or item types
+rarity_properties:
+  Common:
+    type: RawMaterial
+    is_tender_biddable: true
+  Uncommon:
+    type: RawMaterial
+    is_tender_biddable: true
+  Rare:
+    type: RawMaterial
+    is_kokoro_focusable: true # Can be targeted for Kokoro mining authorization (GDD F.2)
+    is_tender_biddable: true
+    is_counterfeit_catalyst: false # Universal Counterfeiting specifically mentions V.Rare (GDD App G)
+  VeryRare:
+    type: RawMaterial
+    is_kokoro_focusable: true # Can be targeted for Kokoro mining authorization (GDD F.2)
+    is_counterfeit_catalyst: true # Required as catalyst for Universal Counterfeiting (GDD App G)
+    is_tender_biddable: true
+  Component: # Represents constructed items like Big Tech
+    type: ConstructedComponent
+    # Note: Base CS value for components used in Tender bids will be calculated dynamically
+    # by the backend based on their raw material cost defined in technology/big_tech.yaml.
+    is_tender_biddable: true # Can be offered in Kokoro Resource Tender bids (GDD F.6)

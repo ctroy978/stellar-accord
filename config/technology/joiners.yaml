@@ -1,0 +1,56 @@
+# File Path: config/technology/joiners.yaml
+# Purpose: Defines the recipes (raw material costs) for constructing Universal Joiners, required when integrating traded Big Tech components into Uber-Tech.
+
+# Uses Resource IDs defined in config/resources.yaml.
+# Uses Civilization IDs (TH, MC, SL, GC, KI, VN).
+# One joiner of the corresponding target_civ_id is required for each traded Big Tech component consumed during Uber-Tech construction.
+
+universal_joiners:
+  - id: UJ-TH
+    name: Thrizoth Universal Joiner
+    target_civ_id: TH # Used when integrating tech traded FROM Thrizoth
+    cost:
+      RootMemoryStrands: 25
+      BiosyntheticPolymers: 15
+      PhotonCrystal: 10
+
+  - id: UJ-MC
+    name: Methane Collective Universal Joiner
+    target_civ_id: MC # Used when integrating tech traded FROM Methane Collective
+    cost:
+      MethasyntheticSpores: 25
+      AtmosphericNexus: 15
+      LiquidSilicon: 10
+
+  - id: UJ-SL
+    name: Silicon Liberation Universal Joiner
+    target_civ_id: SL # Used when integrating tech traded FROM Silicon Liberation
+    cost:
+      CarbonMatrices: 25
+      EchoCrystal: 15
+      Neutronium: 10
+
+  - id: UJ-GC
+    name: Glacian Current Universal Joiner
+    target_civ_id: GC # Used when integrating tech traded FROM Glacian Current
+    cost:
+      DeepOceanLuminite: 25
+      HyperdenseIce: 15
+      SolarEssence: 10
+
+  - id: UJ-KI
+    name: Kyrathi Universal Joiner
+    target_civ_id: KI # Used when integrating tech traded FROM Kyrathi
+    cost:
+      CrystalResonance: 25
+      CognitionCrystals: 15
+      PsionicResin: 10
+
+  - id: UJ-VN
+    name: Vasku Universal Joiner
+    target_civ_id: VN # Used when integrating tech traded FROM Vasku
+    cost:
+      StellarCoreFragment: 25
+      VoidPlasma: 15
+      QuantumParticles: 10
+# Note: All civilizations are assumed to start with the blueprints for all Universal Joiners (GDD Addendum D.1).

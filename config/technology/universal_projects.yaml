@@ -1,0 +1,151 @@
+# File Path: config/technology/universal_projects.yaml
+# Purpose: Defines the endgame Universal Projects, their Uber-Tech requirements, Victory Point effects, and build restrictions.
+
+# Uses Uber-Tech IDs from config/technology/uber_tech.yaml.
+# Uses Civilization IDs (TH, MC, SL, GC, KI, VN).
+# VP awards: Completion award defined in game_settings.yaml, ongoing effects defined here.
+
+universal_projects:
+  - id: UP01
+    name: Dyson Sphere
+    description: A megastructure surrounding a star to capture nearly 100% of its energy output. Provides enormous energy resources but harms photosynthetic and aquatic light cycles.
+    required_uber_tech: [UT01, UT14, UT13, UT07] # Energy Manipulation, Structural Integrity, Thermal Regulation, Stellar Manipulation
+    vp_effects:
+      builder_ongoing_vp: 3
+      beneficiaries: [SL, VN]
+      beneficiary_ongoing_vp: 1
+      harmed: [TH, GC]
+      harmed_ongoing_vp: -1
+    build_restricted_for: [TH, GC] # Cannot be built by harmed civs
+
+  - id: UP02
+    name: Galactic Wormhole Network
+    description: A system of artificial wormholes connecting key points across the sector, revolutionizing travel. Disrupts aquatic isolation and crystalline formations.
+    required_uber_tech: [UT08, UT02, UT03, UT06] # Spatial Distortion, Quantum Entanglement, Gravitational Control, Temporal Regulation
+    vp_effects:
+      builder_ongoing_vp: 3
+      beneficiaries: [VN, MC]
+      beneficiary_ongoing_vp: 1
+      harmed: [GC, KI]
+      harmed_ongoing_vp: -1
+    build_restricted_for: [GC, KI]
+
+  - id: UP03
+    name: Quantum Consciousness Grid
+    description: A sector-wide quantum network for instantaneous communication and consciousness sharing. Disrupts biological thought and chemical processing.
+    required_uber_tech: [UT02, UT05, UT12, UT10] # Quantum Entanglement, Consciousness Interface, Data Processing, Crystal Resonance
+    vp_effects:
+      builder_ongoing_vp: 3
+      beneficiaries: [SL, KI]
+      beneficiary_ongoing_vp: 1
+      harmed: [TH, MC]
+      harmed_ongoing_vp: -1
+    build_restricted_for: [TH, MC]
+
+  - id: UP04
+    name: Atmospheric Conversion Array
+    description: Technology that fundamentally alters planetary atmospheres on a massive scale. Threatens plant-based and aquatic ecosystems.
+    required_uber_tech: [UT04, UT11, UT15, UT16] # Molecular Transformation, Environmental Adaptation, Resource Synthesis, Harmonic Stabilization
+    vp_effects:
+      builder_ongoing_vp: 3
+      beneficiaries: [MC, VN]
+      beneficiary_ongoing_vp: 1
+      harmed: [TH, GC]
+      harmed_ongoing_vp: -1
+    build_restricted_for: [TH, GC]
+
+  - id: UP05
+    name: Stellar Genesis Engine
+    description: Technology to create or accelerate the birth of new stars. Creates radiation interference for digital systems and disrupts void-space routes.
+    required_uber_tech: [UT07, UT03, UT04, UT01] # Stellar Manipulation, Gravitational Control, Molecular Transformation, Energy Manipulation
+    vp_effects:
+      builder_ongoing_vp: 3
+      beneficiaries: [TH, KI]
+      beneficiary_ongoing_vp: 1
+      harmed: [SL, VN]
+      harmed_ongoing_vp: -1
+    build_restricted_for: [SL, VN]
+
+  - id: UP06
+    name: Hydrological Transformation Network
+    description: System to convert gas giants and barren planets into water-rich worlds. Depletes gas resources and creates void-space navigational barriers.
+    required_uber_tech: [UT11, UT04, UT13, UT09] # Environmental Adaptation, Molecular Transformation, Thermal Regulation, Biological Integration
+    vp_effects:
+      builder_ongoing_vp: 3
+      beneficiaries: [GC, TH]
+      beneficiary_ongoing_vp: 1
+      harmed: [MC, VN]
+      harmed_ongoing_vp: -1
+    build_restricted_for: [MC, VN]
+
+  - id: UP07
+    name: Crystalline Resonance Web
+    description: A network of crystal structures amplifying and directing energy. Creates disruptive resonance in gas environments and destabilizes ocean currents.
+    required_uber_tech: [UT10, UT01, UT02, UT16] # Crystal Resonance, Energy Manipulation, Quantum Entanglement, Harmonic Stabilization
+    vp_effects:
+      builder_ongoing_vp: 3
+      beneficiaries: [KI, SL]
+      beneficiary_ongoing_vp: 1
+      harmed: [MC, GC]
+      harmed_ongoing_vp: -1
+    build_restricted_for: [MC, GC]
+
+  - id: UP08
+    name: Gravity Manipulation Matrix
+    description: Technology to selectively alter gravitational forces. Disrupts crystal formation and destabilizes ocean currents/tidal patterns.
+    required_uber_tech: [UT03, UT08, UT16, UT14] # Gravitational Control, Spatial Distortion, Harmonic Stabilization, Structural Integrity
+    vp_effects:
+      builder_ongoing_vp: 3
+      beneficiaries: [VN, SL]
+      beneficiary_ongoing_vp: 1
+      harmed: [KI, GC]
+      harmed_ongoing_vp: -1
+    build_restricted_for: [KI, GC]
+
+  - id: UP09
+    name: Biological Transcendence Engine
+    description: Technology enhancing biological evolution and integration. Threatens digital consciousness and disrupts methane-based biochemistry.
+    required_uber_tech: [UT09, UT05, UT04, UT06] # Biological Integration, Consciousness Interface, Molecular Transformation, Temporal Regulation
+    vp_effects:
+      builder_ongoing_vp: 3
+      beneficiaries: [TH, GC]
+      beneficiary_ongoing_vp: 1
+      harmed: [SL, MC]
+      harmed_ongoing_vp: -1
+    build_restricted_for: [SL, MC]
+
+  - id: UP10
+    name: Digital Reality Overlay
+    description: A pervasive augmented reality system blending digital and physical existence. Competes with crystal memory and distorts chemical sensory perception.
+    required_uber_tech: [UT05, UT12, UT02, UT01] # Consciousness Interface, Data Processing, Quantum Entanglement, Energy Manipulation
+    vp_effects:
+      builder_ongoing_vp: 3
+      beneficiaries: [SL, VN]
+      beneficiary_ongoing_vp: 1
+      harmed: [KI, MC]
+      harmed_ongoing_vp: -1
+    build_restricted_for: [KI, MC]
+
+  - id: UP11
+    name: Molecular Restructuring Lattice
+    description: Technology breaking down and reassembling matter. Disrupts organic cells and creates unpredictable interactions with digital hardware.
+    required_uber_tech: [UT04, UT15, UT10, UT01] # Molecular Transformation, Resource Synthesis, Crystal Resonance, Energy Manipulation
+    vp_effects:
+      builder_ongoing_vp: 3
+      beneficiaries: [MC, KI]
+      beneficiary_ongoing_vp: 1
+      harmed: [TH, SL]
+      harmed_ongoing_vp: -1
+    build_restricted_for: [TH, SL]
+
+  - id: UP12
+    name: Temporal Stability Network
+    description: A system locally altering time flow. Disrupts plant growth cycles and creates void-space navigational hazards.
+    required_uber_tech: [UT06, UT16, UT02, UT03] # Temporal Regulation, Harmonic Stabilization, Quantum Entanglement, Gravitational Control
+    vp_effects:
+      builder_ongoing_vp: 3
+      beneficiaries: [KI, GC]
+      beneficiary_ongoing_vp: 1
+      harmed: [TH, VN]
+      harmed_ongoing_vp: -1
+    build_restricted_for: [TH, VN]

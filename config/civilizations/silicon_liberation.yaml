@@ -1,0 +1,29 @@
+# File Path: config/civilizations/silicon_liberation.yaml
+# Purpose: Defines specific attributes for The Silicon Liberation civilization.
+
+civilization:
+  id: SL
+  name: The Silicon Liberation
+
+  homeworld_system_id: AB # System ID from config/sector_map.yaml (Shared with KI)
+  homeworld_name_flavor: Nexus Prime # Flavor name for their homeworld
+
+  # List of Civilization IDs this civ cannot directly communicate with (GDD App B)
+  communication_restrictions:
+    - KI # Cannot communicate with Kyrathi
+
+  # Resources where this civ has improved Kokoro mining yield (GDD App B / App F)
+  # Format: ResourceID: bonus_percentage (as decimal)
+  mining_specializations:
+    Neutronium: 0.20 # +20% yield for Neutronium
+    LivingMetal: 0.20 # +20% yield for Living Metal
+
+  # Resources where this civ has reduced Kokoro mining yield (GDD App B / App F)
+  # Format: ResourceID: penalty_percentage (as negative decimal)
+  mining_inefficiencies:
+    RootMemoryStrands: -0.15 # -15% yield for Root Memory Strands
+    CognitionCrystals: -0.15 # -15% yield for Cognition Crystals (due to historical conflict)
+
+
+  # Initial Big Tech blueprint access is defined in config/technology/initial_blueprints.yaml
+  # Initial resource inventory is defined in config/initial_state.yaml

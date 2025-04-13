@@ -1,0 +1,31 @@
+# File Path: config/civilizations/kyrathi.yaml
+# Purpose: Defines specific attributes for The Kyrathi civilization.
+
+civilization:
+  id: KI
+  name: The Kyrathi
+  # Formerly known as The Crystalline Convergence
+
+  homeworld_system_id: AB # System ID from config/sector_map.yaml (Shared with SL)
+  homeworld_name_flavor: Facet # Flavor name for their homeworld
+
+  # List of Civilization IDs this civ cannot directly communicate with (GDD App B)
+  communication_restrictions:
+    - SL # Cannot communicate with Silicon Liberation
+
+  # Resources where this civ has improved Kokoro mining yield (GDD App B / App F)
+  # Format: ResourceID: bonus_percentage (as decimal)
+  mining_specializations:
+    CognitionCrystals: 0.20 # +20% yield for Cognition Crystals
+    CrystalResonance: 0.20 # +20% yield for Crystal Resonance
+    StellarCoreFragment: 0.20 # +20% yield for Stellar Core Fragment
+
+  # Resources where this civ has reduced Kokoro mining yield (GDD App B / App F)
+  # Format: ResourceID: penalty_percentage (as negative decimal)
+  mining_inefficiencies:
+    MethasyntheticSpores: -0.15 # -15% yield for Methasynthetic Spores
+    VoidEssence: -0.15 # -15% yield for Void Essence
+
+
+  # Initial Big Tech blueprint access is defined in config/technology/initial_blueprints.yaml
+  # Initial resource inventory is defined in config/initial_state.yaml

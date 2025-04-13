@@ -1,0 +1,164 @@
+# File Path: config/technology/uber_tech.yaml
+# Purpose: Defines all Uber-Tech components and their minimum construction requirements in terms of summed outputs from consumed Big Tech components.
+
+# Uses consistent Output Keys defined in config/technology/big_tech.yaml.
+# Requirements represent the minimum summed output needed from selected Big Tech components.
+# Consuming traded Big Tech components also requires corresponding Universal Joiners (see config/technology/joiners.yaml).
+
+uber_tech:
+  - id: UT01
+    name: Energy Manipulation Matrix
+    requirements:
+      power_tw: 180
+      structure_kpa: 20
+      thermal_kds: 50
+      signal_pbs: 40
+      quantum_qsu: 30
+      threat_atten_ta: 10
+
+  - id: UT02
+    name: Quantum Entanglement Network
+    requirements:
+      power_tw: 80
+      compute_zf: 50
+      structure_kpa: 10
+      signal_pbs: 100
+      quantum_qsu: 150
+      threat_atten_ta: 20
+
+  - id: UT03
+    name: Gravitational Control System
+    requirements:
+      power_tw: 100
+      compute_zf: 60
+      structure_kpa: 50
+      thermal_kds: 20
+      signal_pbs: 60
+      gravitic_ugf: 100
+      threat_atten_ta: 30
+
+  - id: UT04
+    name: Molecular Transformation Engine
+    requirements:
+      power_tw: 120
+      compute_zf: 20
+      structure_kpa: 60
+      thermal_kds: 40
+      threat_atten_ta: 10
+
+  - id: UT05
+    name: Consciousness Interface Protocol
+    requirements:
+      power_tw: 60
+      compute_zf: 150
+      structure_kpa: 10
+      signal_pbs: 120
+      quantum_qsu: 40
+      threat_atten_ta: 20
+
+  - id: UT06
+    name: Temporal Regulation Field
+    requirements:
+      power_tw: 100
+      compute_zf: 40
+      structure_kpa: 20
+      thermal_kds: 10
+      signal_pbs: 30
+      gravitic_ugf: 40
+      quantum_qsu: 140
+      threat_atten_ta: 30
+
+  - id: UT07
+    name: Stellar Manipulation Array
+    requirements:
+      power_tw: 200
+      compute_zf: 30
+      structure_kpa: 70
+      thermal_kds: 60
+      gravitic_ugf: 60
+      threat_atten_ta: 20
+
+  - id: UT08
+    name: Spatial Distortion Framework
+    requirements:
+      power_tw: 140
+      compute_zf: 40
+      structure_kpa: 30
+      signal_pbs: 80
+      gravitic_ugf: 120
+      quantum_qsu: 80
+
+  - id: UT09
+    name: Biological Integration System
+    requirements:
+      power_tw: 70
+      compute_zf: 80
+      structure_kpa: 40
+      thermal_kds: 50
+      signal_pbs: 50
+      threat_atten_ta: 10
+
+  - id: UT10
+    name: Crystal Resonance Matrix
+    requirements:
+      power_tw: 130
+      structure_kpa: 80
+      signal_pbs: 70
+      quantum_qsu: 60
+      threat_atten_ta: 40
+
+  - id: UT11
+    name: Environmental Adaptation Grid
+    requirements:
+      power_tw: 100
+      structure_kpa: 100
+      thermal_kds: 70
+      threat_atten_ta: 80
+
+  - id: UT12
+    name: Data Processing Architecture
+    requirements:
+      power_tw: 80
+      compute_zf: 180
+      structure_kpa: 30
+      thermal_kds: 20
+      signal_pbs: 90
+      quantum_qsu: 70
+
+  - id: UT13
+    name: Thermal Regulation Network
+    requirements:
+      power_tw: 160
+      structure_kpa: 40
+      thermal_kds: 100
+      signal_pbs: 20
+      threat_atten_ta: 30
+
+  - id: UT14
+    name: Structural Integrity Field
+    requirements:
+      power_tw: 90
+      structure_kpa: 150
+      thermal_kds: 30
+      gravitic_ugf: 20
+      threat_atten_ta: 60
+
+  - id: UT15
+    name: Resource Synthesis Catalyst
+    requirements:
+      power_tw: 120
+      compute_zf: 10
+      structure_kpa: 90
+      thermal_kds: 60
+      quantum_qsu: 20
+
+  - id: UT16
+    name: Harmonic Stabilization Array
+    requirements:
+      power_tw: 80
+      compute_zf: 50
+      structure_kpa: 60
+      signal_pbs: 80
+      gravitic_ugf: 50
+      quantum_qsu: 90
+      threat_atten_ta: 50

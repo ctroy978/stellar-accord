@@ -1,0 +1,177 @@
+# File Path: config/initial_state.yaml
+# Purpose: Defines the starting resource inventory and Chrono Shard (CS) balance for each civilization at the beginning of the game (Turn 1).
+
+# Based on GDD Addendum C.1 (Revised) distribution table.
+# Uses Resource IDs defined in config/resources.yaml.
+
+initial_inventories:
+  # The Thrizoth (TH)
+  TH:
+    CarbonMatrices: 1000
+    PhotonCrystal: 2000
+    EchoCrystal: 500
+    LiquidSilicon: 500
+    SolarEssence: 1000
+    AtmosphericNexus: 1000
+    BiosyntheticPolymers: 1500
+    QuantumParticles: 0
+    PsionicResin: 1000
+    Neutronium: 1000
+    DuraniumAlloy: 0
+    LivingMetal: 1400
+    DeepOceanLuminite: 0
+    HyperdenseIce: 0
+    MethasyntheticSpores: 1000
+    RootMemoryStrands: 2000
+    VoidPlasma: 0
+    CognitionCrystals: 500
+    CrystalResonance: 0 # Assuming 0 if not listed for TH in C.1
+    Gravitonium: 0
+    TemporalDust: 0
+    StellarCoreFragment: 1750
+    VoidEssence: 0
+    QuantumEntanglementNodes: 0
+    ChronoAmber: 0
+
+  # Methane Collective (MC)
+  MC:
+    CarbonMatrices: 2000
+    PhotonCrystal: 500
+    EchoCrystal: 500
+    LiquidSilicon: 2000
+    SolarEssence: 1000
+    AtmosphericNexus: 1500
+    BiosyntheticPolymers: 500
+    QuantumParticles: 1000
+    PsionicResin: 0
+    Neutronium: 1000
+    DuraniumAlloy: 1300
+    LivingMetal: 1300
+    DeepOceanLuminite: 0
+    HyperdenseIce: 0
+    MethasyntheticSpores: 2000
+    RootMemoryStrands: 0
+    VoidPlasma: 1000
+    CognitionCrystals: 0
+    CrystalResonance: 0 # Assuming 0 if not listed for MC in C.1
+    Gravitonium: 0
+    TemporalDust: 1750
+    StellarCoreFragment: 0
+    VoidEssence: 1750
+    QuantumEntanglementNodes: 0
+    ChronoAmber: 0
+
+  # Silicon Liberation (SL)
+  SL:
+    CarbonMatrices: 2000
+    PhotonCrystal: 1000
+    EchoCrystal: 2000
+    LiquidSilicon: 1000
+    SolarEssence: 1000
+    AtmosphericNexus: 500
+    BiosyntheticPolymers: 1000
+    QuantumParticles: 1500
+    PsionicResin: 1000
+    Neutronium: 1000
+    DuraniumAlloy: 1400
+    LivingMetal: 1300
+    DeepOceanLuminite: 0
+    HyperdenseIce: 1300
+    MethasyntheticSpores: 0
+    RootMemoryStrands: 1000
+    VoidPlasma: 1000
+    CognitionCrystals: 1500
+    CrystalResonance: 1000
+    Gravitonium: 0
+    TemporalDust: 0
+    StellarCoreFragment: 0
+    VoidEssence: 0
+    QuantumEntanglementNodes: 1750
+    ChronoAmber: 0
+
+  # Glacian Current (GC)
+  GC:
+    CarbonMatrices: 1000
+    PhotonCrystal: 1000
+    EchoCrystal: 2000
+    LiquidSilicon: 1000
+    SolarEssence: 1000
+    AtmosphericNexus: 500
+    BiosyntheticPolymers: 1500
+    QuantumParticles: 0
+    PsionicResin: 0
+    Neutronium: 1000
+    DuraniumAlloy: 300
+    LivingMetal: 0
+    DeepOceanLuminite: 2000
+    HyperdenseIce: 1400
+    MethasyntheticSpores: 1000
+    RootMemoryStrands: 0
+    VoidPlasma: 0
+    CognitionCrystals: 0
+    CrystalResonance: 1000
+    Gravitonium: 0
+    TemporalDust: 0
+    StellarCoreFragment: 0
+    VoidEssence: 0
+    QuantumEntanglementNodes: 0
+    ChronoAmber: 1750
+
+  # The Kyrathi (KI)
+  KI:
+    CarbonMatrices: 500
+    PhotonCrystal: 2000
+    EchoCrystal: 1000
+    LiquidSilicon: 2000
+    SolarEssence: 500
+    AtmosphericNexus: 0
+    BiosyntheticPolymers: 0
+    QuantumParticles: 0
+    PsionicResin: 1500
+    Neutronium: 0
+    DuraniumAlloy: 1000
+    LivingMetal: 0
+    DeepOceanLuminite: 1500
+    HyperdenseIce: 1300
+    MethasyntheticSpores: 0
+    RootMemoryStrands: 1000
+    VoidPlasma: 0
+    CognitionCrystals: 1500
+    CrystalResonance: 2000
+    Gravitonium: 1750
+    TemporalDust: 0
+    StellarCoreFragment: 1750
+    VoidEssence: 0
+    QuantumEntanglementNodes: 0
+    ChronoAmber: 1750
+
+  # The Vasku (VN)
+  VN:
+    CarbonMatrices: 500
+    PhotonCrystal: 500
+    EchoCrystal: 1000
+    LiquidSilicon: 500
+    SolarEssence: 0
+    AtmosphericNexus: 1000
+    BiosyntheticPolymers: 0
+    QuantumParticles: 2000
+    PsionicResin: 1000
+    Neutronium: 0
+    DuraniumAlloy: 0
+    LivingMetal: 0
+    DeepOceanLuminite: 500
+    HyperdenseIce: 0
+    MethasyntheticSpores: 0
+    RootMemoryStrands: 0
+    VoidPlasma: 2000
+    CognitionCrystals: 500
+    CrystalResonance: 0 # Assuming 0 if not listed for VN in C.1
+    Gravitonium: 1750
+    TemporalDust: 1750
+    StellarCoreFragment: 0
+    VoidEssence: 1750
+    QuantumEntanglementNodes: 1750
+    ChronoAmber: 0
+
+# All civilizations start with zero Chrono Shards (GDD Sec 6.3).
+initial_cs: 0

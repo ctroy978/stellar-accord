@@ -1,0 +1,29 @@
+# File Path: config/civilizations/methane_collective.yaml
+# Purpose: Defines specific attributes for The Methane Collective civilization.
+
+civilization:
+  id: MC
+  name: The Methane Collective
+
+  homeworld_system_id: IJ # System ID from config/sector_map.yaml
+  homeworld_name_flavor: Amalgus # Flavor name for their homeworld
+
+  # List of Civilization IDs this civ cannot directly communicate with (GDD App B)
+  communication_restrictions:
+    - GC # Cannot communicate with Glacian Current
+
+  # Resources where this civ has improved Kokoro mining yield (GDD App B / App F)
+  # Format: ResourceID: bonus_percentage (as decimal)
+  mining_specializations:
+    MethasyntheticSpores: 0.20 # +20% yield for Methasynthetic Spores
+    VoidPlasma: 0.20 # +20% yield for Void Plasma
+
+  # Resources where this civ has reduced Kokoro mining yield (GDD App B / App F)
+  # Format: ResourceID: penalty_percentage (as negative decimal)
+  mining_inefficiencies:
+    DeepOceanLuminite: -0.15 # -15% yield for Deep-Ocean Luminite
+    HyperdenseIce: -0.15 # -15% yield for Hyperdense Ice
+
+
+  # Initial Big Tech blueprint access is defined in config/technology/initial_blueprints.yaml
+  # Initial resource inventory is defined in config/initial_state.yaml

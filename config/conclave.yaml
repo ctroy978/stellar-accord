@@ -1,0 +1,44 @@
+# File Path: config/conclave.yaml
+# Purpose: Defines the rules and procedures for the Kokoro Conclave, covering both mining authorization votes and the resource tender.
+
+conclave:
+  # Rules governing the Kokoro Mining Authorization process
+  mining_authorization:
+    max_proposals_per_civ_per_round: 1 # Each civilization can submit at most one proposal per round
+    min_miners_per_proposal: 1 # A proposal must nominate at least one miner
+    max_miners_per_proposal: 2 # A proposal can nominate at most two miners
+    allowed_focus_resource_rarities: [Rare, VeryRare] # Only Rare or Very Rare materials can be the focus
+    voting_style: SecretSingleVote # Each civ casts one secret vote for one proposal
+    tie_result: NoExtraction # If tied for most votes, no mining occurs that round
+
+    # Yield Calculation Parameters (Applied if a proposal passes)
+    base_yield_focused_resource_min: 60 # Minimum base yield for the focused Rare/Very Rare resource
+    base_yield_focused_resource_max: 65 # Maximum base yield (system will pick value in range per extraction)
+    # Note: Actual yield is Base Yield * (1 + Sum of Miner Modifiers).
+    # Miner Modifiers (+Specialization% or -Inefficiency%) depend on the nominated miners
+    # and the specific focused resource, defined in config/civilizations/*.yaml.
+
+    base_yield_byproduct_total_percent: 15 # Total quantity of byproducts as a % of the base focused yield
+    byproduct_resource_count_min: 1 # Minimum number of different byproduct types generated
+    byproduct_resource_count_max: 2 # Maximum number of different byproduct types generated
+    byproduct_resource_rarities: [Rare, VeryRare] # Byproducts will be selected from these rarities
+    byproduct_exclusion: FocusedResource # The byproduct(s) cannot be the same as the focused resource
+    # Note: The total byproduct quantity is distributed randomly among the generated types.
+
+    # Resource Distribution Parameters (Applied if a proposal passes)
+    miners_cut_percent: 10 # Percentage of the *total calculated focused resource yield* given to miners
+    # Note: This total cut is divided equally between the authorized miners (if two were nominated).
+    # All byproducts and the remainder of the focused resource go to the Tender pool for the next round.
+
+  # Rules governing the Kokoro Conclave Resource Tender
+  resource_tender:
+    frequency: OncePerRound # Occurs predictably each round
+    # Timing: Lots announced (Negotiation), Bids submitted (Action), Resolution (Resolution)
+    goods_source: PreviousRoundKokoroExtractionPool # Source of items in the Tender lot
+    goods_knowledge: KnownQuantitiesAndTypes # Bidders know exactly what's in the lot
+    bidding_style: Sealed # Bids are submitted secretly
+    allowed_bid_asset_types: [RawMaterial, Component] # Types of assets allowed in bids (matches rarity_properties types)
+    # Note: Bid can contain multiple types/items.
+    valuation_method: SumOfBaseCSValue # How bids are valued (uses base_cs_value from resources.yaml; Components calculated dynamically)
+    tie_resolution: RandomWinner # If multiple bids tie for the highest value, one winner is chosen randomly
+    # Note: Winning bidder's assets are deducted; lot transferred directly. Losing bidders unaffected.

@@ -1,0 +1,38 @@
+# File Path: config/intelligence/mechanics.yaml
+# Purpose: Defines global rules and parameters for the Intelligence Operations system.
+
+intelligence_mechanics:
+  # Success Scaling for applicable operations (Universal, Civ-Specific, Advanced)
+  success_scaling_max_bonus_percent:
+    30
+    # The maximum percentage points that can be added to the base success chance via resource investment.
+
+  success_scaling_investment_per_percent:
+    4 # Value derived interpretation of GDD G.1: "Min(30%, [Additional Units Invested Per Resource Type] × 0.5%)". To get 1% bonus requires 2 units per resource type (2 * 0.5 = 1). So, 1 percent point cost is 2 units per resource type. *Correction*: The formula applies per resource type. To get +0.5% requires 1 unit of EACH resource type listed in the cost. Therefore, to get +1% requires 2 units of EACH resource type.
+    # How many additional units of *each* resource type listed in the operation's cost
+    # must be invested to gain +0.5% success chance (up to the max bonus).
+    # Example: If cost is ResA(10), ResB(20) and this value is 1, investing
+    # ResA(11), ResB(21) adds +0.5% success. Investing ResA(10+60), ResB(20+60) adds +30%.
+
+  # Communication Interception Specifics (GDD G.1 / G.2)
+  interception_base_chars:
+    200 # Max characters viewable if success % is 100% after vs defense.
+    # The maximum number of characters potentially revealed by a successful Communication Interception operation.
+    # Actual characters shown = interception_base_chars * (Attacker Final Success % - Defender Protection %).
+    # Characters are selected randomly from the target's logs/comms for the specified timeframe.
+
+  # Breaking News Network (GDD 6.6 / Appendix G - KI False Flag)
+  breaking_news_headlines_per_round:
+    2
+    # Number of public headlines generated automatically each round.
+
+  breaking_news_content_source:
+    PartialInfoRandomCivIntelActivity
+    # Describes the typical content: Snippets about a random civ's intel activity from the previous round (partial info).
+    # Note: The Kyrathi False Flag operation (Intel_KI_FalseFlagOperation) can potentially insert a custom story.
+
+  # General Intel Mechanics
+  # Attack vs Defense: Defined per operation in operations.yaml. If true, Attacker Success % - Defender Protection % = Final Chance.
+  # Reporting: Success/Fail notifications are handled by game logic (e.g., Theft shows amount, Analysis reveals data).
+  # Limitations: Intel Ops cannot determine Black Market auction contents (GDD 6.6).
+  # Counterfeiting: Handled by specific operations and detection rules (BM/Hub).

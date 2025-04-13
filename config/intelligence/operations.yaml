@@ -1,0 +1,245 @@
+# File Path: config/intelligence/operations.yaml
+# Purpose: Defines all available intelligence operations, including universal, civilization-specific, and advanced, along with their costs, effects, and success parameters.
+
+# Uses Resource IDs from config/resources.yaml.
+# Uses V.Rare as shorthand for any Very Rare resource in Universal Counterfeiting cost.
+# Uses QEN for QuantumEntanglementNodes ID for brevity where applicable in costs, matching Appendix G/D usage.
+
+operations:
+  universal:
+    - id: Intel_Universal_BasicResourceMonitoring
+      name: Basic Resource Monitoring
+      description: Identify quantities of one specific resource another civilization possesses.
+      cost:
+        QuantumParticles: 20
+        CarbonMatrices: 25
+      base_success_percent: 60
+      max_success_percent: 90
+      success_scaling: true # Success % increases with additional resource investment
+      category: Monitoring
+      target_type: ResourceStack # Targets a specific resource type of a target civ
+      attack_vs_defense: false
+
+    - id: Intel_Universal_CommunicationInterception
+      name: Communication Interception
+      description: Attempt to view partial content of target's internal logs/comms from the last round.
+      cost:
+        EchoCrystal: 25
+        SolarEssence: 25
+      base_success_percent: 65
+      max_success_percent: 95
+      success_scaling: true
+      category: Communication
+      target_type: LogEntry # Targets internal logs/comms
+      # Note: Success % vs. Defender Protection % determines % visibility of characters (GDD G.1)
+      attack_vs_defense: true
+
+    - id: Intel_Universal_ResourceTheft
+      name: Resource Theft
+      description: Attempt to steal 1% of a specific resource stack from target. Cost halved in GDD G.2? - Applying lower cost from table.
+      cost:
+        DuraniumAlloy: 15 # Using values from table in App G. Ensure consistency.
+        TemporalDust: 10
+      base_success_percent: 50
+      max_success_percent: 80
+      success_scaling: true
+      category: Resource
+      target_type: ResourceStack
+      theft_percent: 1.0 # Steals 1.0% of the target stack
+      attack_vs_defense: true
+
+    - id: Intel_Universal_ResourceDestruction
+      name: Resource Destruction
+      description: Attempt to destroy 1.5% of a specific resource stack of target.
+      cost:
+        SolarEssence: 35
+        Gravitonium: 25
+      base_success_percent: 45
+      max_success_percent: 75
+      success_scaling: true
+      category: Sabotage
+      target_type: ResourceStack
+      destruction_percent: 1.5 # Destroys 1.5% of the target stack
+      attack_vs_defense: true
+
+    - id: Intel_Universal_ResourceProtection
+      name: Resource Protection
+      description: Defensive buff increasing protection against Resource Theft and Destruction for 1 round.
+      cost:
+        Neutronium: 25
+        BiosyntheticPolymers: 30
+      base_success_percent: 30 # Base protection % provided
+      max_success_percent: 60 # Max protection % with investment
+      success_scaling: true
+      category: Defense
+      target_type: Self # Buffs the user's civilization
+      protection_bonus_percent: 0 # Base protection value is base_success_percent, scaling adds to it
+      attack_vs_defense: false # This IS the defense
+
+    - id: Intel_Universal_BribeVotingOfficial
+      name: Bribe Voting Official
+      description: Determine how a specific civilization voted in the previous Conclave round.
+      cost:
+        SolarEssence: 20
+        LiquidSilicon: 25
+      base_success_percent: 70
+      max_success_percent: 100
+      success_scaling: true
+      category: Monitoring # Or Counter-Intel? Monitoring seems more appropriate
+      target_type: CivVote # Targets a specific civ's past vote
+      attack_vs_defense: false
+
+    - id: Intel_Universal_Counterfeiting
+      name: Universal Counterfeiting
+      description: Create 50 counterfeit units of a chosen Rare/Very Rare material using 10 real units and 5 Very Rare catalyst units. Fails when used in projects. Generates interceptable log.
+      cost:
+        # Dynamic cost: 10x GenuineMaterial + 5x V.Rare Catalyst (Handled by game logic)
+        # Placeholder cost items for UI estimation if needed, actual cost applied by logic
+        # Requires game logic to handle the specific material + catalyst choice
+        placeholder_cost_for_ui_scaling: 15 # Arbitrary number representing the core cost unit count
+      base_success_percent: 50 # GDD Appendix G Table - chance to successfully craft
+      max_success_percent: 75 # GDD Appendix G Table - max chance with investment
+      success_scaling: true
+      category: Resource # Creates (fake) resources
+      target_type: Self # Creates items in user inventory
+      output_counterfeit_units: 50
+      input_real_units: 10
+      input_catalyst_units: 5 # Catalyst must be VeryRare rarity
+      attack_vs_defense: false
+
+  civilization_specific:
+    TH: # The Thrizoth
+      - id: Intel_TH_BiologicalResourceMonitoring
+        name: Biological Resource Monitoring
+        description: Identify exact quantities of all organic/biological themed resources of target.
+        cost:
+          MethasyntheticSpores: 25
+          CarbonMatrices: 30
+        base_success_percent: 75
+        max_success_percent: 100
+        success_scaling: true
+        category: Monitoring
+        target_type: ResourceCategory # Targets specific categories (needs defining e.g., 'Organic', 'Biological')
+        attack_vs_defense: false
+      - id: Intel_TH_ExtendedCommunicationMonitoring
+        name: Extended Communication Monitoring
+        description: View all logs/comms of target for 1 full round.
+        cost:
+          SolarEssence: 30
+          PhotonCrystal: 25
+        base_success_percent: 65
+        max_success_percent: 95
+        success_scaling: true
+        category: Communication
+        target_type: LogEntry
+        attack_vs_defense: true
+      - id: Intel_TH_SeedDispersalDrones
+        name: Seed Dispersal Drones
+        description: Place monitoring on target undetected for 2 rounds (reveals incoming ops).
+        cost:
+          BiosyntheticPolymers: 35
+          QuantumParticles: 30
+        base_success_percent: 60
+        max_success_percent: 90
+        success_scaling: true
+        category: Monitoring # Also Counter-Intel aspect
+        target_type: TargetCiv # Places a status on target
+        duration_rounds: 2
+        effect: RevealsIncomingOps # Specific effect tag
+        attack_vs_defense: true # Assumes target defense can prevent placement
+      - id: Intel_TH_TotalCommunicationProtection
+        name: Total Communication Protection
+        description: Defensive buff providing enhanced communication/log protection for 1 round.
+        cost:
+          PsionicResin: 30
+          VoidPlasma: 35
+        base_success_percent: 35
+        max_success_percent: 65
+        success_scaling: true
+        category: Defense
+        target_type: Self
+        protection_bonus_percent: 0
+        attack_vs_defense: false
+      - id: Intel_TH_ProjectAnalysis
+        name: Project Analysis
+        description: Determine exact progress % and resources invested in one target project.
+        cost:
+          LivingMetal: 25
+          StellarCoreFragment: 20
+        base_success_percent: 75
+        max_success_percent: 100
+        success_scaling: true
+        category: Monitoring
+        target_type: Project # Targets a specific ongoing project
+        attack_vs_defense: true # Assumes project can be shielded
+
+    MC: # Methane Collective
+      - id: Intel_MC_ResourceSabotage
+        name: Resource Sabotage
+        description: Attempt to destroy 3% of a specific resource stack of target.
+        cost:
+          VoidPlasma: 35 # Adjusted cost from GDD G.3 notes
+          DuraniumAlloy: 40
+        base_success_percent: 55
+        max_success_percent: 85
+        success_scaling: true
+        category: Sabotage
+        target_type: ResourceStack
+        destruction_percent: 3.0
+        attack_vs_defense: true
+      - id: Intel_MC_ProjectDisruption
+        name: Project Disruption
+        description: Attempt to delay one target project's progress by one phase (UI: remove 2-4 power bars for 1 turn).
+        cost:
+          VoidEssence: 30
+          TemporalDust: 35
+        base_success_percent: 60
+        max_success_percent: 90
+        success_scaling: true
+        category: Sabotage
+        target_type: Project
+        effect: DelayProgress # Specific effect tag, linked to UI bars (GDD 6.4)
+        attack_vs_defense: true
+      - id: Intel_MC_CommunicationsEncryption
+        name: Communications Encryption
+        description: Defensive buff providing advanced communication/log protection for 1 round.
+        cost:
+          MethasyntheticSpores: 30
+          QuantumParticles: 35 # 'QP' used in GDD table
+        base_success_percent: 38
+        max_success_percent: 68
+        success_scaling: true
+        category: Defense
+        target_type: Self
+        protection_bonus_percent: 0
+        attack_vs_defense: false
+      - id: Intel_MC_ExtendedSurveillance
+        name: Extended Surveillance
+        description: Monitor all logs/comms & resource trades of target for 1 round.
+        cost:
+          AtmosphericNexus: 25
+          SolarEssence: 35 # 'SE' used in GDD table
+        base_success_percent: 65
+        max_success_percent: 95
+        success_scaling: true
+        category: Monitoring
+        target_type: LogEntry # Targets logs AND trade actions
+        attack_vs_defense: true
+      - id: Intel_MC_ProjectProtection
+        name: Project Protection
+        description: Defensive buff protecting one specific project from sabotage for 1 round.
+        cost:
+          Gravitonium: 25
+          LivingMetal: 30
+        base_success_percent: 35
+        max_success_percent: 65
+        success_scaling: true
+        category: Defense
+        target_type: Project # Applied to a specific friendly project
+        protection_bonus_percent: 0 # Provides a flat protection value based on success %
+        attack_vs_defense: false
+
+    SL: # Silicon Liberation
+      - id: Intel_SL_CounterIntelligenceShield
+        name: Counter-Intelligence Shield
+        description: Defensive buff

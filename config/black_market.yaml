@@ -1,0 +1,30 @@
+# File Path: config/black_market.yaml
+# Purpose: Defines the rules and parameters governing the Black Market, including Chrono Shard acquisition, auctions, and counterfeiting penalties.
+
+black_market:
+  # CS Acquisition (Selling Resources)
+  cs_value_fluctuation_percent_min: -20 # Minimum percentage deviation from base CS value when selling
+  cs_value_fluctuation_percent_max: 20 # Maximum percentage deviation from base CS value when selling
+  # Note: Base CS values per resource are defined in config/resources.yaml
+  # Selling mechanism is anonymous via platform.
+
+  # Black Market Auctions
+  auction_trigger_mechanism: RandomPerRound # How auctions are initiated
+  auction_trigger_chance_per_round: 0.4 # Example: 40% chance each round an auction occurs (adjust for gameplay feel)
+  auction_duration_seconds_min: 60 # Minimum duration of a pop-up auction
+  auction_duration_seconds_max: 90 # Maximum duration of a pop-up auction
+  auction_bid_currency: CS # Only Chrono Shards can be used for bidding
+  auction_bid_visibility: AnonymousHighest # Bids are anonymous, but the current highest bid amount is visible
+  auction_goods_description: Vague # Lots are described vaguely; contents not precisely known beforehand
+  # Note: Intel Ops cannot reliably determine auction lot contents (GDD 6.6). Winnings transferred directly.
+
+  # Counterfeiting Penalties (When caught selling fakes to the Black Market)
+  counterfeit_sale_detection_risk_percent: 70 # Percentage chance of detecting counterfeit goods sold to the BM
+  counterfeit_penalties_sequence: # Actions taken upon successive detection events
+    - Warning # First offense
+    - BanReplace # Second offense: Temporary ban from BM, must replace fake goods' value? (Needs clarification in GDD - assuming temp ban + loss)
+    - PermanentBan # Third offense: Permanent ban from using the Black Market
+
+  # Counterfeit Detection in Trade Hubs (Relates to counterfeiting, but applies to Hub trades)
+  hub_trade_counterfeit_detection_percent: 30 # Base chance any trade via Hub detects counterfeits (Source: Appendix G - Note)
+  # Note: Detection halts the trade and notifies both parties. Counterfeit materials fail when used in projects (GDD 6.6).

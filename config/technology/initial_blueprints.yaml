@@ -1,0 +1,118 @@
+# File Path: config/technology/initial_blueprints.yaml
+# Purpose: Specifies which Big Tech component blueprints each civilization starts the game with access to.
+
+# Uses Civilization IDs (TH, MC, SL, GC, KI, VN).
+# Uses Big Tech IDs (BT01-BT30) defined in config/technology/big_tech.yaml.
+# Based on GDD Appendix D, Section 2 blueprint distribution.
+
+initial_blueprints:
+  # The Thrizoth (TH) - Groups A, B, C (#1-15)
+  TH:
+    - BT01
+    - BT02
+    - BT03
+    - BT04
+    - BT05
+    - BT06
+    - BT07
+    - BT08
+    - BT09
+    - BT10
+    - BT11
+    - BT12
+    - BT13
+    - BT14
+    - BT15
+
+  # Methane Collective (MC) - Groups A, B, F (#1-10, #26-30)
+  MC:
+    - BT01
+    - BT02
+    - BT03
+    - BT04
+    - BT05
+    - BT06
+    - BT07
+    - BT08
+    - BT09
+    - BT10
+    - BT26
+    - BT27
+    - BT28
+    - BT29
+    - BT30
+
+  # Silicon Liberation (SL) - Groups A, B, D (#1-10, #16-20)
+  SL:
+    - BT01
+    - BT02
+    - BT03
+    - BT04
+    - BT05
+    - BT06
+    - BT07
+    - BT08
+    - BT09
+    - BT10
+    - BT16
+    - BT17
+    - BT18
+    - BT19
+    - BT20
+
+  # Glacian Current (GC) - Groups A, C, E (#1-5, #11-15, #21-25)
+  GC:
+    - BT01
+    - BT02
+    - BT03
+    - BT04
+    - BT05
+    - BT11
+    - BT12
+    - BT13
+    - BT14
+    - BT15
+    - BT21
+    - BT22
+    - BT23
+    - BT24
+    - BT25
+
+  # The Kyrathi (KI) - Groups B, C, E (#6-10, #11-15, #21-25)
+  KI:
+    - BT06
+    - BT07
+    - BT08
+    - BT09
+    - BT10
+    - BT11
+    - BT12
+    - BT13
+    - BT14
+    - BT15
+    - BT21
+    - BT22
+    - BT23
+    - BT24
+    - BT25
+
+  # The Vasku (VN) - Groups A, C, F (#1-5, #11-15, #26-30)
+  VN:
+    - BT01
+    - BT02
+    - BT03
+    - BT04
+    - BT05
+    - BT11
+    - BT12
+    - BT13
+    - BT14
+    - BT15
+    - BT26
+    - BT27
+    - BT28
+    - BT29
+    - BT30
+# Note: Civilizations start with access to these blueprints, not the components themselves.
+# Blueprints cannot be traded (GDD 6.4).
+# All civilizations start with blueprints for all Universal Joiners (GDD Addendum D.1).

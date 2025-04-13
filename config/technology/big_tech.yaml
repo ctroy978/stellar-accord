@@ -1,0 +1,504 @@
+# File Path: config/technology/big_tech.yaml
+# Purpose: Defines all Big Tech components, their construction costs (raw materials), and their functional outputs used for building Uber-Tech.
+
+# Uses Resource IDs defined in config/resources.yaml.
+# Uses consistent Output Keys for requirements in config/technology/uber_tech.yaml.
+# Output Units Key:
+#   power_tw: Terawatts (TW)
+#   compute_zf: ZetaFLOPS (ZF)
+#   structure_kpa: KiloPascals (kPa)
+#   thermal_kds: Kelvin Delta per second (KΔ/s)
+#   signal_pbs: Petabits/sec (Pb/s)
+#   gravitic_ugf: Micro-g Force (μgF)
+#   quantum_qsu: Q-Stability Units (QSU)
+#   threat_atten_ta: Threat Attenuation Rating (TA)
+
+big_tech:
+  - id: BT01
+    name: Power Conversion System
+    cost:
+      Neutronium: 30
+      PhotonCrystal: 25
+      LivingMetal: 15
+    outputs:
+      power_tw: 40
+      compute_zf: 0
+      structure_kpa: 5
+      thermal_kds: 25
+      signal_pbs: 0
+      gravitic_ugf: 0
+      quantum_qsu: 0
+      threat_atten_ta: 0
+
+  - id: BT02
+    name: Energy Amplification Array
+    cost:
+      SolarEssence: 30
+      EchoCrystal: 20
+      StellarCoreFragment: 10
+      CrystalResonance: 15 # 'CR' from App D table
+    outputs:
+      power_tw: 50
+      compute_zf: 0
+      structure_kpa: 5
+      thermal_kds: 20
+      signal_pbs: 15
+      gravitic_ugf: 0
+      quantum_qsu: 0
+      threat_atten_ta: 0
+
+  - id: BT03
+    name: Directional Flow Controller
+    cost:
+      VoidPlasma: 25
+      AtmosphericNexus: 15
+      QuantumParticles: 20
+    outputs:
+      power_tw: 15
+      compute_zf: 0
+      structure_kpa: 5
+      thermal_kds: 10
+      signal_pbs: 25
+      gravitic_ugf: 5
+      quantum_qsu: 0
+      threat_atten_ta: 0
+
+  - id: BT04
+    name: Containment Field Generator
+    cost:
+      DuraniumAlloy: 35
+      Gravitonium: 20
+      PsionicResin: 15
+    outputs:
+      power_tw: 25
+      compute_zf: 0
+      structure_kpa: 40
+      thermal_kds: 0
+      signal_pbs: 0
+      gravitic_ugf: 15
+      quantum_qsu: 0
+      threat_atten_ta: 40
+
+  - id: BT05
+    name: Wave Harmonization Grid
+    cost:
+      TemporalDust: 25
+      DeepOceanLuminite: 20
+      HyperdenseIce: 15
+      CrystalResonance: 15 # 'CR' from App D table
+    outputs:
+      power_tw: 15
+      compute_zf: 0
+      structure_kpa: 10
+      thermal_kds: 0
+      signal_pbs: 40
+      gravitic_ugf: 0
+      quantum_qsu: 20
+      threat_atten_ta: 10
+
+  - id: BT06
+    name: Quantum Calculation Engine
+    cost:
+      QuantumEntanglementNodes: 15 # 'QEN' from App D table
+      BiosyntheticPolymers: 25
+      CognitionCrystals: 15
+    outputs:
+      power_tw: 20
+      compute_zf: 50
+      structure_kpa: 5
+      thermal_kds: 10
+      signal_pbs: 0
+      gravitic_ugf: 0
+      quantum_qsu: 35
+      threat_atten_ta: 0
+
+  - id: BT07
+    name: Particle Pairing System
+    cost:
+      LiquidSilicon: 30
+      Neutronium: 20
+      ChronoAmber: 15
+    outputs:
+      power_tw: 15
+      compute_zf: 15
+      structure_kpa: 0
+      thermal_kds: 0
+      signal_pbs: 10
+      gravitic_ugf: 0
+      quantum_qsu: 40
+      threat_atten_ta: 0
+
+  - id: BT08
+    name: Coherence Maintenance Field
+    cost:
+      CognitionCrystals: 20
+      PhotonCrystal: 25
+      CarbonMatrices: 35
+      CrystalResonance: 20 # 'CR' from App D table
+    outputs:
+      power_tw: 20
+      compute_zf: 0
+      structure_kpa: 5
+      thermal_kds: 0
+      signal_pbs: 20
+      gravitic_ugf: 0
+      quantum_qsu: 50
+      threat_atten_ta: 5
+
+  - id: BT09
+    name: Instantaneous Transfer Protocol
+    cost:
+      QuantumEntanglementNodes: 25 # 'QEN' from App D table
+      VoidEssence: 15
+      EchoCrystal: 20
+    outputs:
+      power_tw: 20
+      compute_zf: 25
+      structure_kpa: 0
+      thermal_kds: 0
+      signal_pbs: 50
+      gravitic_ugf: 0
+      quantum_qsu: 30
+      threat_atten_ta: 0
+
+  - id: BT10
+    name: Quantum State Observer
+    cost:
+      RootMemoryStrands: 20
+      LivingMetal: 20
+      TemporalDust: 25
+      CrystalResonance: 15 # 'CR' from App D table
+    outputs:
+      power_tw: 10
+      compute_zf: 20
+      structure_kpa: 0
+      thermal_kds: 0
+      signal_pbs: 15
+      gravitic_ugf: 0
+      quantum_qsu: 30
+      threat_atten_ta: 0
+
+  - id: BT11
+    name: Entanglement Propagation Grid
+    cost:
+      QuantumEntanglementNodes: 25 # 'QEN' from App D table
+      PsionicResin: 20
+      SolarEssence: 30
+      CrystalResonance: 10 # 'CR' from App D table
+    outputs:
+      power_tw: 20
+      compute_zf: 0
+      structure_kpa: 10
+      thermal_kds: 0
+      signal_pbs: 35
+      gravitic_ugf: 0
+      quantum_qsu: 40
+      threat_atten_ta: 0
+
+  - id: BT12
+    name: Field Intensity Regulator
+    cost:
+      Gravitonium: 25
+      Neutronium: 30
+      AtmosphericNexus: 15
+    outputs:
+      power_tw: 15
+      compute_zf: 5
+      structure_kpa: 5
+      thermal_kds: 10
+      signal_pbs: 20
+      gravitic_ugf: 15
+      quantum_qsu: 0
+      threat_atten_ta: 5
+
+  - id: BT13
+    name: Spacetime Curvature Inducer
+    cost:
+      ChronoAmber: 25
+      VoidEssence: 20
+      StellarCoreFragment: 15
+    outputs:
+      power_tw: 35
+      compute_zf: 0
+      structure_kpa: 5
+      thermal_kds: 10
+      signal_pbs: 0
+      gravitic_ugf: 50
+      quantum_qsu: 15
+      threat_atten_ta: 0
+
+  - id: BT14
+    name: Orbital Dynamics Calculator
+    cost:
+      QuantumParticles: 35
+      EchoCrystal: 20
+      LiquidSilicon: 25
+    outputs:
+      power_tw: 15
+      compute_zf: 40
+      structure_kpa: 0
+      thermal_kds: 0
+      signal_pbs: 10
+      gravitic_ugf: 10
+      quantum_qsu: 0
+      threat_atten_ta: 0
+
+  - id: BT15
+    name: Environmental Shield Projector
+    cost:
+      BiosyntheticPolymers: 30
+      DeepOceanLuminite: 20
+      DuraniumAlloy: 25
+    outputs:
+      power_tw: 25
+      compute_zf: 0
+      structure_kpa: 10
+      thermal_kds: 0
+      signal_pbs: 5
+      gravitic_ugf: 0
+      quantum_qsu: 0
+      threat_atten_ta: 50
+
+  - id: BT16
+    name: Multi-system Synchronizer
+    cost:
+      EchoCrystal: 25
+      MethasyntheticSpores: 20
+      CognitionCrystals: 15
+      CrystalResonance: 15 # 'CR' from App D table
+    outputs:
+      power_tw: 20
+      compute_zf: 30
+      structure_kpa: 0
+      thermal_kds: 0
+      signal_pbs: 40
+      gravitic_ugf: 0
+      quantum_qsu: 10
+      threat_atten_ta: 0
+
+  - id: BT17
+    name: Atomic Bond Manipulator
+    cost:
+      LivingMetal: 25
+      HyperdenseIce: 20
+      CarbonMatrices: 35
+    outputs:
+      power_tw: 20
+      compute_zf: 0
+      structure_kpa: 35
+      thermal_kds: 10
+      signal_pbs: 0
+      gravitic_ugf: 0
+      quantum_qsu: 0
+      threat_atten_ta: 0
+
+  - id: BT18
+    name: Element Transmutation Catalyst
+    cost:
+      StellarCoreFragment: 15
+      Gravitonium: 25
+      VoidPlasma: 30
+    outputs:
+      power_tw: 40
+      compute_zf: 0
+      structure_kpa: 10
+      thermal_kds: 20
+      signal_pbs: 0
+      gravitic_ugf: 0
+      quantum_qsu: 0
+      threat_atten_ta: 5
+
+  - id: BT19
+    name: Structural Pattern Projector
+    cost:
+      CrystalResonance: 40 # Assumed from App D, as CR is used elsewhere
+      BiosyntheticPolymers: 25
+      PhotonCrystal: 20
+    outputs:
+      power_tw: 20
+      compute_zf: 0
+      structure_kpa: 50
+      thermal_kds: 0
+      signal_pbs: 10
+      gravitic_ugf: 0
+      quantum_qsu: 0
+      threat_atten_ta: 0
+
+  - id: BT20
+    name: Compound Formation Accelerator
+    cost:
+      MethasyntheticSpores: 25
+      LiquidSilicon: 30
+      TemporalDust: 20
+    outputs:
+      power_tw: 15
+      compute_zf: 5
+      structure_kpa: 0
+      thermal_kds: 25
+      signal_pbs: 0
+      gravitic_ugf: 0
+      quantum_qsu: 0
+      threat_atten_ta: 0
+
+  - id: BT21
+    name: Reaction Acceleration Field
+    cost:
+      AtmosphericNexus: 25
+      RootMemoryStrands: 20
+      HyperdenseIce: 20
+    outputs:
+      power_tw: 20
+      compute_zf: 0
+      structure_kpa: 0
+      thermal_kds: 20
+      signal_pbs: 15
+      gravitic_ugf: 0
+      quantum_qsu: 0
+      threat_atten_ta: 0
+
+  - id: BT22
+    name: Neural Signal Translator
+    cost:
+      PsionicResin: 30
+      DeepOceanLuminite: 15
+      EchoCrystal: 25
+    outputs:
+      power_tw: 10
+      compute_zf: 35
+      structure_kpa: 0
+      thermal_kds: 0
+      signal_pbs: 20
+      gravitic_ugf: 0
+      quantum_qsu: 5
+      threat_atten_ta: 0
+
+  - id: BT23
+    name: Thought Pattern Interpreter
+    cost:
+      CognitionCrystals: 25
+      RootMemoryStrands: 20
+      MethasyntheticSpores: 15
+      CrystalResonance: 10 # 'CR' from App D table
+    outputs:
+      power_tw: 15
+      compute_zf: 45
+      structure_kpa: 0
+      thermal_kds: 0
+      signal_pbs: 15
+      gravitic_ugf: 0
+      quantum_qsu: 5
+      threat_atten_ta: 0
+
+  - id: BT24
+    name: Experience Simulation Engine
+    cost:
+      QuantumEntanglementNodes: 20 # 'QEN' from App D table
+      PsionicResin: 25
+      LivingMetal: 15
+    outputs:
+      power_tw: 20
+      compute_zf: 30
+      structure_kpa: 0
+      thermal_kds: 5
+      signal_pbs: 25
+      gravitic_ugf: 0
+      quantum_qsu: 10
+      threat_atten_ta: 0
+
+  - id: BT25
+    name: Memory Access Framework
+    cost:
+      DeepOceanLuminite: 20
+      QuantumParticles: 35
+      ChronoAmber: 15
+      CrystalResonance: 20 # 'CR' from App D table
+    outputs:
+      power_tw: 10
+      compute_zf: 25
+      structure_kpa: 20
+      thermal_kds: 0
+      signal_pbs: 5
+      gravitic_ugf: 0
+      quantum_qsu: 0
+      threat_atten_ta: 0
+
+  - id: BT26
+    name: Identity Preservation System
+    cost:
+      ChronoAmber: 25
+      CognitionCrystals: 20
+      VoidEssence: 15
+      CrystalResonance: 15 # 'CR' from App D table
+    outputs:
+      power_tw: 15
+      compute_zf: 30
+      structure_kpa: 5
+      thermal_kds: 0
+      signal_pbs: 0
+      gravitic_ugf: 0
+      quantum_qsu: 20
+      threat_atten_ta: 15
+
+  - id: BT27
+    name: Chronon Flow Controller
+    cost:
+      TemporalDust: 30
+      StellarCoreFragment: 15
+      QuantumEntanglementNodes: 20 # 'QEN' from App D table
+    outputs:
+      power_tw: 25
+      compute_zf: 0
+      structure_kpa: 0
+      thermal_kds: 5
+      signal_pbs: 20
+      gravitic_ugf: 5
+      quantum_qsu: 35
+      threat_atten_ta: 0
+
+  - id: BT28
+    name: Time Dilation Generator
+    cost:
+      VoidEssence: 25
+      Gravitonium: 20
+      TemporalDust: 25
+    outputs:
+      power_tw: 45
+      compute_zf: 0
+      structure_kpa: 5
+      thermal_kds: 10
+      signal_pbs: 0
+      gravitic_ugf: 30
+      quantum_qsu: 40
+      threat_atten_ta: 0
+
+  - id: BT29
+    name: Dimensional Folding Mechanism
+    cost:
+      QuantumEntanglementNodes: 25 # 'QEN' from App D table
+      VoidPlasma: 20
+      Gravitonium: 15
+    outputs:
+      power_tw: 30
+      compute_zf: 5
+      structure_kpa: 10
+      thermal_kds: 0
+      signal_pbs: 10
+      gravitic_ugf: 40
+      quantum_qsu: 30
+      threat_atten_ta: 0
+
+  - id: BT30
+    name: Fusion Process Regulator
+    cost:
+      SolarEssence: 35
+      Neutronium: 25
+      StellarCoreFragment: 15
+    outputs:
+      power_tw: 50
+      compute_zf: 0
+      structure_kpa: 25
+      thermal_kds: 40
+      signal_pbs: 0
+      gravitic_ugf: 0
+      quantum_qsu: 0
+      threat_atten_ta: 10

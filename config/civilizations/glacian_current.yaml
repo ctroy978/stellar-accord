@@ -1,0 +1,29 @@
+# File Path: config/civilizations/glacian_current.yaml
+# Purpose: Defines specific attributes for The Glacian Current civilization.
+
+civilization:
+  id: GC
+  name: The Glacian Current
+
+  homeworld_system_id: GH # System ID from config/sector_map.yaml
+  homeworld_name_flavor: Glacia # Flavor name for their homeworld
+
+  # List of Civilization IDs this civ cannot directly communicate with (GDD App B)
+  communication_restrictions:
+    - MC # Cannot communicate with Methane Collective
+
+  # Resources where this civ has improved Kokoro mining yield (GDD App B / App F)
+  # Format: ResourceID: bonus_percentage (as decimal)
+  mining_specializations:
+    DeepOceanLuminite: 0.20 # +20% yield for Deep-Ocean Luminite
+    HyperdenseIce: 0.20 # +20% yield for Hyperdense Ice
+
+  # Resources where this civ has reduced Kokoro mining yield (GDD App B / App F)
+  # Format: ResourceID: penalty_percentage (as negative decimal)
+  mining_inefficiencies:
+    VoidPlasma: -0.15 # -15% yield for Void Plasma
+    StellarCoreFragment: -0.15 # -15% yield for Stellar Core Fragment
+
+
+  # Initial Big Tech blueprint access is defined in config/technology/initial_blueprints.yaml
+  # Initial resource inventory is defined in config/initial_state.yaml

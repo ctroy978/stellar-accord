@@ -1,0 +1,22 @@
+# File Path: config/game_settings.yaml
+# Purpose: Defines global game rules, timings, and core victory point parameters.
+
+game:
+  target_players_min: 20 # Recommended minimum number of students
+  target_players_max: 30 # Recommended maximum number of students
+  team_size_min: 3 # Minimum players per civilization team
+  team_size_max: 4 # Maximum players per civilization team
+  recommended_rounds: 7 # Suggested number of rounds for a ~3-5 hour session (adjust as needed)
+
+phase_durations: # Default durations in minutes (can be adjusted by instructor via platform controls)
+  planning: 5
+  negotiation: 10 # Includes time for reviewing Tender lots
+  action: 5 # Includes time for submitting Tender/BM bids
+  resolution: 1 # Primarily automated system processing
+  assessment: 2 # Reviewing VP changes, news, preparing for next round
+
+victory_points:
+  # One-time award upon completion of any Universal Project.
+  universal_project_completion_award: 10 # Subject to playtesting/balancing
+  # Note: Ongoing VP adjustments (+3 builder, +1 beneficiary, -1 harmed) per turn
+  # are defined per project in technology/universal_projects.yaml
