@@ -1,4 +1,3 @@
-
 services:
   nginx:
     image: nginx:latest
@@ -31,12 +30,15 @@ services:
     build: ./backend
     # No direct port mapping needed for production
     volumes:
-      - ./backend:/app
+      - ./backend:/app           # Mount backend code (for development)
+      - ./config:/app/config:ro # <-- ADD THIS LINE (ro = read-only, recommended for config)
     depends_on:
       - db
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/stellar_accord
       - SECRET_KEY=your_secret_key
+      # Optional: You could explicitly set CONFIG_PATH if you don't want the default
+      # - CONFIG_PATH=/app/config
     networks:
       - app-network
 
